@@ -1,0 +1,11 @@
+.pyc
+.aux
+.log
+.toc
+.out
+.pdf
+.fdb_latexmk
+.fls
+.synctex.gz
+.bbl
+.blg
