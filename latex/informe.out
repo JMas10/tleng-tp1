@@ -1,7 +1,4 @@
 \BOOKMARK [1][-]{section.1}{Introducci\363n}{}% 1
-\BOOKMARK [1][-]{section.2}{Experimentaci\363n}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Universidad de Oxford}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Universidad de Syndney}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Universidad de Ghana}{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.4}{Universidad de Hong Kong de Ciencia y Tecnologia \(HKUST\)}{section.2}% 6
-\BOOKMARK [1][-]{section.3}{Conclusiones}{}% 7
+\BOOKMARK [1][-]{section.2}{Gram\341tica}{}% 2
+\BOOKMARK [1][-]{section.3}{Lexer}{}% 3
+\BOOKMARK [1][-]{section.4}{Parser}{}% 4

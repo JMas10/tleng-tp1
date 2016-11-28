@@ -1,0 +1,23 @@
+En la siguiente sección vamos a mostrar y describir la gramática construida para el lenguaje \textit{Dibu}, llamo a esta
+gramática G:\\
+\\
+P $\rightarrow$ S newline P $\mid$ $\lambda$\\
+S $\rightarrow$ id PARAMS\\
+PARAMS $\rightarrow$  id = V PARAMS P $\mid$ id = V\\
+V $\rightarrow$ num $\mid$ string $\mid$ (num, num) $\mid$ [ARRAY]\\
+ARRAY $\rightarrow$ [num, num], ARRAY $\mid$ [num, num]\\
+\\
+\textit{G} = \{\{P, S, PARAMS, V, ARRAY\}, \{num, string, (, , , ), [, ], =, id\}, Descripto por la gramática, P\}\\
+
+Como se describe en el enunciado, el lenguaje \textit{Dibu} es una serie de instrucciones de la forma:\\
+\\
+IDENTIFICADOR PARAM1=V1, PARAM2=V2, ..., PARAMN=VN\\
+
+Nuestra gramática consiste en cinco producciones. Comenzando con ARRAY la cual describe la secuencia de valores numericos
+separados por una coma, la cual se utilizara en V para describir arreglos. La producción V que contiene las combinaciones
+de terminales que se pueden esperar como valores de los parámetros (num, string, point, array).
+PARAMS posee la serie de compuesta por: parámetro = valor. S describe una instrucción, con su nombre y parámetros. Y
+finalmente P, describe la serie compuesta de las instrucciones descriptas en el no-terminal S. Con estas producciones se
+puede ver con estos que nuestra gramática describe precisamente la serie de instrucciones de \textit{Dibu}. Se debe
+aclarar que esta gramática no describe todas las restricciones de \textit{Dibu}, como por ejemplo que solo aparezca la
+instrucción size una vez. Estas cuestriones se tratarán en el lexer y el parser.
