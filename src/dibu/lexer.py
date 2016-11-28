@@ -82,17 +82,17 @@ def apply(string):
 
     return list(lexer)
 
-if __name__ == "__main__":
-    data = '''size height=200 width=200
-    rectangle upper_left=(0,0), size=(50, 50), fill="red"
-    rectangle upper_left=(100,0), size=(50, 50)
-    rectangle upper_left=(50,50), size=(50, 50)
-    rectangle upper_left=(150,50), size=(50, 50)
-    rectangle upper_left=(0,100), size=(50, 50)
-    rectangle upper_left=(100,100), size=(50, 50)
-    rectangle upper_left=(50,150), size=(50, 50)
-    rectangle upper_left=(150,150), size=(50, 50)'''
-
-    lexer = lex.lex()
-    print(apply(data))
-    print(lexer.lineno)
+# if __name__ == "__main__":
+#     data = '''size height=200 width=200
+#     rectangle upper_left=(0,0), size=(50, 50), fill="red"
+#     rectangle upper_left=(100,0), size=(50, 50)
+#     rectangle upper_left=(50,50), size=(50, 50)
+#     rectangle upper_left=(150,50), size=(50, 50)
+#     rectangle upper_left=(0,100), size=(50, 50)
+#     rectangle upper_left=(100,100), size=(50, 50)
+#     rectangle upper_left=(50,150), size=(50, 50)
+#     rectangle upper_left=(150,150), size=(50, 50)'''
+#
+#     lexer = lex.lex()
+#     print(apply(data))
+#     print(lexer.lineno)

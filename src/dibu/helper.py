@@ -49,19 +49,29 @@ class Scene:
         return
 
 class Line:
-    def __init__(self,start,end,color,width):
+    def __init__(self,start=(0,0),end=(10,10),fill_color='white',line_color='black',line_width=1):
         self.start = start
         self.end = end
-        self.color = color
-        self.width = width
+        self.fill_color = fill_color
+        self.line_color = line_color
+        self.line_width = line_width
         return
 
+    def fill(self, fill_color):
+        self.fill_color = fill_color
+
+    def stroke(self, line_color):
+        self.line_color = line_color
+
+    def stroke_width(self, line_width):
+        self.line_width = line_width
+
     def strarray(self):
-        return ["  <line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:%s;stroke-width:%d\"/>\n" %\
-                (self.start[0],self.start[1],self.end[0],self.end[1],colorstr(self.color),self.width)]
+        return ["  <line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"fill:%s;stroke:%s;stroke-width:%d\"/>\n" %\
+                (self.start[0],self.start[1],self.end[0],self.end[1],self.fill_color, self.line_color,self.line_width)]
 
 class Circle:
-    def __init__(self,center,radius,fill_color,line_color,line_width):
+    def __init__(self,center=(100,100),radius=40,fill_color='white',line_color='black',line_width=1):
         self.center = center
         self.radius = radius
         self.fill_color = fill_color
@@ -69,96 +79,194 @@ class Circle:
         self.line_width = line_width
         return
 
+    def center(self, center):
+        self.center = center
+
+    def radius(self, radius):
+        self.radius = radius
+
+    def fill(self, fill_color):
+        self.fill_color = fill_color
+
+    def stroke(self, line_color):
+        self.line_color = line_color
+
+    def stroke_width(self, line_width):
+        self.line_width = line_width
+
     def strarray(self):
         return ["  <circle cx=\"%d\" cy=\"%d\" r=\"%d\"\n" %\
                 (self.center[0],self.center[1],self.radius),
-                "    style=\"fill:%s;stroke:%s;stroke-width:%d\"  />\n" % (colorstr(self.fill_color),colorstr(self.line_color),self.line_width)]
+                "    style=\"fill:%s;stroke:%s;stroke-width:%d\"  />\n" % (self.fill_color, self.line_color,self.line_width)]
 
 class Ellipse:
-    def __init__(self,center,radius_x,radius_y,fill_color,line_color,line_width):
+    def __init__(self,center=(100,100),radius_x=20,radius_y=30,fill_color='white',line_color='black',line_width=1):
         self.center = center
         self.radiusx = radius_x
         self.radiusy = radius_y
         self.fill_color = fill_color
         self.line_color = line_color
         self.line_width = line_width
+
+    def center(self, center):
+        self.center = center
+
+    def rx(self, radius_x):
+        self.radiusx = radius_x
+
+    def ry(self, radius_x):
+        self.radiusy = radius_y
+
+    def fill(self, fill_color):
+        self.fill_color = fill_color
+
+    def stroke(self, line_color):
+        self.line_color = line_color
+
+    def stroke_width(self, line_width):
+        self.line_width = line_width
+
     def strarray(self):
         return ["  <ellipse cx=\"%d\" cy=\"%d\" rx=\"%d\" ry=\"%d\"\n" %\
                 (self.center[0],self.center[1],self.radius_x,self.radius_y),
-                "    style=\"fill:%s;stroke:%s;stroke-width:%d\"/>\n" % (colorstr(self.fill_color),colorstr(self.line_color),self.line_width)]
+                "    style=\"fill:%s;stroke:%s;stroke-width:%d\"/>\n" % (self.fill_color, self.line_color ,self.line_width)]
 
 class Polygon:
-    def __init__(self,points,fill_color,line_color,line_width):
+    def __init__(self,points=[(100,100)],fill_color='white',line_color='black',line_width=1):
         self.points = points
         self.fill_color = fill_color
         self.line_color = line_color
         self.line_width = line_width
+
+    def points(self, points):
+        self.points = points
+
+    def fill(self, fill_color):
+        self.fill_color = fill_color
+
+    def stroke(self, line_color):
+        self.line_color = line_color
+
+    def stroke_width(self, line_width):
+        self.line_width = line_width
+
     def strarray(self):
         polygon="<polygon points=\""
         for point in self.points:
             polygon+=" %d,%d" % (point[0],point[1])
         return [polygon,\
                "\" \nstyle=\"fill:%s;stroke:%s;stroke-width:%d\"/>\n" %\
-               (colorstr(self.fill_color),colorstr(self.line_color),self.line_width)]
+               (self.fill_color, self.line_color, self.line_width)]
 class Polyline:
-    def __init__(self,points,fill_color,line_color,line_width):
+    def __init__(self,points=[(100,100)],fill_color='white',line_color='black',line_width=1):
         self.points = points
         self.fill_color = fill_color
         self.line_color = line_color
         self.line_width = line_width
+
+    def points(self, points):
+        self.points = points
+
+    def fill(self, fill_color):
+        self.fill_color = fill_color
+
+    def stroke(self, line_color):
+        self.line_color = line_color
+
+    def stroke_width(self, line_width):
+        self.line_width = line_width
+
     def strarray(self):
         polyline="<polyline points=\""
         for point in self.points:
             polyline+=" %d,%d" % (point[0],point[1])
         return [polyline,\
                "\" \nstyle=\"fill:%s;stroke:%s;stroke-width:%d\"/>\n" %\
-               (colorstr(self.fill_color),colorstr(self.line_color),self.line_width)]
+               (self.fill_color, self.line_color, self.line_width)]
 
 class Rectangle:
-    def __init__(self,origin,height,width,fill_color,line_color,line_width):
+    def __init__(self,origin=(100,100),size=(200,200),fill_color='white',line_color='black',line_width=1):
         self.origin = origin
-        self.height = height
-        self.width = width
+        self.height = size[0]
+        self.width = size[1]
         self.fill_color = fill_color
         self.line_color = line_color
         self.line_width = line_width
         return
 
+    def upper_left(self, origin):
+        self.origin = origin
+
+    def size(self, size):
+        self.height = size[0]
+        self.width = size[1]
+
+    def fill(self, fill_color):
+        self.fill_color = fill_color
+
+    def stroke(self, line_color):
+        self.line_color = line_color
+
+    def stroke_width(self, line_width):
+        self.line_width = line_width
+
     def strarray(self):
         return ["  <rect x=\"%d\" y=\"%d\" height=\"%d\"\n" %\
                 (self.origin[0],self.origin[1],self.height),
                 "    width=\"%d\" style=\"fill:%s;stroke:%s;stroke-width:%d\" />\n" %\
-                (self.width,colorstr(self.fill_color),colorstr(self.line_color),self.line_width)]
+                (self.width, self.fill_color, self.line_color ,self.line_width)]
+
 
 class Text:
-    def __init__(self,origin,text,size,color):
+    def __init__(self, origin=(100,100), text=' ', font='Arial',size=12, fill_color='black', line_color='black',line_width=1):
         self.origin = origin
         self.text = text
+        self.font = font
         self.size = size
-        self.color = color
+        self.fill_color = fill_color
+        self.line_color = line_color
+        self.line_width = line_width
         return
 
+    def t(self, text):
+        self.text = text
+
+    def at(self, origin):
+        self.origin = origin
+
+    def font_family(self, font):
+        self.font = font
+
+    def font_size(self, size):
+        self.size = size
+
+    def fill(self, fill_color):
+        self.fill_color = fill_color
+
+    def stroke(self, line_color):
+        self.line_color = line_color
+
+    def stroke_width(self, line_width):
+        self.line_width = line_width
+
     def strarray(self):
-        return ["  <text x=\"%d\" y=\"%d\" font-size=\"%d\" fill=\"%s\">\n" %\
-                (self.origin[0],self.origin[1],self.size,colorstr(self.color)),
+        return ["  <text x=\"%d\" y=\"%d\" font-family=\"%s\" font-size=\"%d\" fill=\"%s\" stroke=\"%s\" stroke-width=\"%d\" >\n" %\
+                (self.origin[0],self.origin[1],self.font, self.size, self.fill_color, self.line_color ,self.line_width),
                 "   %s\n" % self.text,
                 "  </text>\n"]
 
-def colorstr(rgb): return "#%x%x%x" % (rgb[0]/16,rgb[1]/16,rgb[2]/16)
-
 def test():
-    scene = Scene("test")
-    scene.add(Rectangle((100,100),200,200,(0,255,255),(0,0,0),1))
-    scene.add(Line((200,200),(200,300),(0,0,0),1))
-    scene.add(Line((200,200),(300,200),(0,0,0),1))
-    scene.add(Line((200,200),(100,200),(0,0,0),1))
-    scene.add(Line((200,200),(200,100),(0,0,0),1))
-    scene.add(Circle((200,200),30,(0,0,255),(0,0,0),1))
-    scene.add(Circle((200,300),30,(0,255,0),(0,0,0),1))
-    scene.add(Circle((300,200),30,(255,0,0),(0,0,0),1))
-    scene.add(Circle((100,200),30,(255,255,0),(0,0,0),1))
-    scene.add(Circle((200,100),30,(255,0,255),(0,0,0),1))
-    scene.add(Text((50,50),"Testing SVG",24,(0,0,0)))
+    scene = Scene('test')
+    scene.add(Line((200,200),(200,300)))
+    scene.add(Line((200,200),(300,200)))
+    scene.add(Line((200,200),(100,200)))
+    scene.add(Line((200,200),(200,100)))
+    scene.add(Circle((200,200),30,'red'))
+    scene.add(Circle((200,300),30, 'blue'))
+    scene.add(Circle((300,200),30))
+    scene.add(Circle((100,200),30, 'black'))
+    scene.add(Circle((200,100),30, 'green'))
+    scene.add(Text((50,50),"Testing SVG"))
     scene.write_svg()
     scene.display()
     return
