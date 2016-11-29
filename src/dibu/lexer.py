@@ -29,6 +29,7 @@ tokens = [
    'LBRACKET',
    'RBRACKET',
    'COMMA',
+   'NEWLINE',
    'EQUALS'
 ]
 
@@ -48,13 +49,14 @@ def t_STRING(token):
   return token
 
 def t_ID(token):
-    r"[a-zA-Z_+=*-][a-zA-Z0-9_+*-]*"
+    r"[_a-zA-Z][_a-zA-Z0-9]*"
     return token
-
+			
 def t_NEWLINE(token):
     r"\n+"
     token.lexer.lineno += len(token.value)
-
+    token.lexpos = 0
+	
 t_LPAREN = r"\("
 t_RPAREN = r"\)"
 t_LBRACKET = r"\["

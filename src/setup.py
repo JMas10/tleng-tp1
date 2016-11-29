@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 """Archivo de setup del proyecto."""
 from setuptools import setup
 
