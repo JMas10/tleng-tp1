@@ -5,9 +5,9 @@ _tabversion = '3.8'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'A903BA40403A27A7FB21533BA2CB9B29'
+_lr_signature = '0B8F8665F1B0BF07514F8234AF52E79E'
     
-_lr_action_items = {'RPAREN':([22,23,],[24,25,]),'STRING':([8,],[9,]),'EQUALS':([7,],[8,]),'LBRACKET':([8,],[10,]),'NUM':([8,12,14,20,21,],[11,16,18,22,23,]),'COMMA':([16,18,25,],[20,21,26,]),'LPAREN':([8,10,26,],[12,14,14,]),'RBRACKET':([15,25,27,],[19,-11,-12,]),'ID':([0,2,4,6,9,11,13,17,19,24,],[4,4,7,-4,-8,-7,7,-6,-10,-9,]),'$end':([0,1,2,3,5,6,9,11,13,17,19,24,],[-3,0,-3,-1,-2,-4,-8,-7,-5,-6,-10,-9,]),}
+_lr_action_items = {'RPAREN':([24,25,],[26,27,]),'STRING':([9,],[10,]),'NEWLINE':([2,6,10,12,14,20,22,26,],[5,-4,-8,-7,-5,-10,-6,-9,]),'EQUALS':([7,],[9,]),'LBRACKET':([9,],[11,]),'NUM':([9,13,15,21,23,],[12,17,19,24,25,]),'COMMA':([10,12,14,17,19,20,26,27,],[-8,-7,18,21,23,-10,-9,28,]),'LPAREN':([9,11,28,],[13,15,15,]),'RBRACKET':([16,27,29,],[20,-11,-12,]),'ID':([0,4,5,18,],[4,7,4,7,]),'$end':([0,1,3,5,8,],[-3,0,-1,-3,-2,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'start':([0,],[1,]),'state':([0,2,],[2,2,]),'program':([0,2,],[3,5,]),'params':([4,13,],[6,17,]),'valor':([8,],[13,]),'array':([10,26,],[15,27,]),}
+_lr_goto_items = {'start':([0,],[1,]),'state':([0,5,],[2,2,]),'program':([0,5,],[3,8,]),'params':([4,18,],[6,22,]),'valor':([9,],[14,]),'array':([11,28,],[16,29,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,15 +27,15 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> start","S'",1,None,None,None),
   ('start -> program','start',1,'p_start','parser_rules.py',29),
-  ('program -> state program','program',2,'p_program_nonempty','parser_rules.py',43),
+  ('program -> state NEWLINE program','program',3,'p_program_nonempty','parser_rules.py',43),
   ('program -> <empty>','program',0,'p_program_empty','parser_rules.py',47),
   ('state -> ID params','state',2,'p_state','parser_rules.py',51),
   ('params -> ID EQUALS valor','params',3,'p_params_nonrecursive','parser_rules.py',75),
-  ('params -> ID EQUALS valor params','params',4,'p_params_recursive','parser_rules.py',81),
-  ('valor -> NUM','valor',1,'p_valor_number','parser_rules.py',93),
-  ('valor -> STRING','valor',1,'p_valor_string','parser_rules.py',97),
-  ('valor -> LPAREN NUM COMMA NUM RPAREN','valor',5,'p_valor_point','parser_rules.py',101),
-  ('valor -> LBRACKET array RBRACKET','valor',3,'p_valor_array','parser_rules.py',105),
-  ('array -> LPAREN NUM COMMA NUM RPAREN','array',5,'p_array_element','parser_rules.py',109),
-  ('array -> LPAREN NUM COMMA NUM RPAREN COMMA array','array',7,'p_array_recursive','parser_rules.py',113),
+  ('params -> ID EQUALS valor COMMA params','params',5,'p_params_recursive','parser_rules.py',81),
+  ('valor -> NUM','valor',1,'p_valor_number','parser_rules.py',90),
+  ('valor -> STRING','valor',1,'p_valor_string','parser_rules.py',94),
+  ('valor -> LPAREN NUM COMMA NUM RPAREN','valor',5,'p_valor_point','parser_rules.py',98),
+  ('valor -> LBRACKET array RBRACKET','valor',3,'p_valor_array','parser_rules.py',102),
+  ('array -> LPAREN NUM COMMA NUM RPAREN','array',5,'p_array_element','parser_rules.py',106),
+  ('array -> LPAREN NUM COMMA NUM RPAREN COMMA array','array',7,'p_array_recursive','parser_rules.py',110),
 ]

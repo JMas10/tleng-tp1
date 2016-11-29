@@ -7,7 +7,8 @@ tokens = [
    'LBRACKET',
    'RBRACKET',
    'COMMA',
-   'EQUALS'
+   'EQUALS',
+   'NEWLINE'
    ]
 
 def t_NUM(token):
@@ -33,6 +34,7 @@ def t_ID(token):
 def t_NEWLINE(token):
     r"\n+"
     token.lexer.lineno += len(token.value)
+    return token
 
 t_LPAREN = r"\("
 t_RPAREN = r"\)"

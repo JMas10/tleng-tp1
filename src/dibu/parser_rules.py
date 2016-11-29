@@ -40,7 +40,7 @@ def p_start(p):
     scene.display()
 
 def p_program_nonempty(p):
-    'program : state program'
+    'program : state NEWLINE program'
     pass
 
 def p_program_empty(p):
@@ -78,11 +78,11 @@ def p_params_nonrecursive(p):
     p[0] ={'parametros': paramDicc}
 
 def p_params_recursive(p):
-    'params : ID EQUALS valor params'
-    if p[1] in p[4]['parametros']:
+    'params : ID EQUALS valor COMMA params'
+    if p[1] in p[5]['parametros']:
         #Error
         print('Error - Parametros repetidos')
-    paramDicc = p[4]['parametros']
+    paramDicc = p[5]['parametros']
     paramDicc.update({p[1]: p[3]})
     p[0] = {'parametros': paramDicc}
 
