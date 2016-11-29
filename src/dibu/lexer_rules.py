@@ -16,19 +16,30 @@ def t_NUM(token):
     if token.value.find(".") >= 0:
         number_type = "float"
         number_value = float(token.value)
+        number_line = token.lineno
+        number_pos = token.lexpos
     else:
         number_type = "int"
         number_value = int(token.value)
-    token.value = {"value": number_value, "type": number_type}
+        number_line = token.lineno
+        number_pos = token.lexpos
+    token.value = {"value": number_value, "type": number_type, "lineno": number_line, 'lexpos': number_pos}
     return token
 
 def t_STRING(token):
-  r"\"([a-zA-Z_+*-][a-zA-Z0-9_+*-]*)\""
-  token.value = token.value[1:-1]
-  return token
+    r"\"([a-zA-Z_+*-][a-zA-Z0-9_+*-]*)\""
+    string_value = token.value[1:-1]
+    string_line = token.lineno
+    string_pos = token.lexpos
+    token.value = {"value": string_value, "lineno": string_line, 'lexpos': string_pos}
+    return token
 
 def t_ID(token):
     r"[a-zA-Z_+*-][a-zA-Z0-9_+*-]*"
+    string_value = token.value[1:-1]
+    string_line = token.lineno
+    string_pos = token.lexpos
+    token.value = {"value": string_value, "lineno": string_line, 'lexpos': string_pos}
     return token
 
 def t_NEWLINE(token):

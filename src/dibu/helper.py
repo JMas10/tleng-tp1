@@ -16,7 +16,7 @@ import os
 display_prog = "display"
 
 class Scene:
-    def __init__(self,name="svg",height=400,width=400):
+    def __init__(self,name="svg",height=200,width=200):
         self.name = name
         self.items = []
         self.height = height
@@ -191,7 +191,7 @@ class Polyline:
                (self.fill_color, self.line_color, self.line_width)]
 
 class Rectangle:
-    def __init__(self,origin=(100,100),size=(200,200),fill_color='white',line_color='black',line_width=1):
+    def __init__(self,origin=(100,100),size=(200,200),fill_color='black',line_color='white',line_width=1):
         self.origin = origin
         self.height = size[0]
         self.width = size[1]

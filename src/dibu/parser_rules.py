@@ -28,12 +28,15 @@ listaFiguras = []
 def p_start(p):
     'start : program'
     scene = Scene('resultado')
-    # if diccSize['height'].count > 1:
-    #     print('Error - Dos sizes')
-    # if diccSize['height'].count == 0:
-    #     scene = Scene("resultado")
-    # else:
-    #     scene = Scene("resultado", diccSize['height'], diccSize['width'])
+    cantidadSize = len(diccSize['height'])
+    if cantidadSize > 1:
+        print('Error - Dos sizes')
+    if cantidadSize == 0:
+        scene = Scene("resultado")
+    else:
+        height = diccSize['height'][0]
+        width = diccSize['width'][0]
+        scene = Scene("resultado", height, width)
     for elem in listaFiguras:
         scene.add(elem)
     scene.write_svg()
@@ -50,7 +53,11 @@ def p_program_empty(p):
 def p_state(p):
     'state : ID params'
     if p[1] == 'size':
-        print('ver que hacer con size')
+        params = p[2]['parametros']
+        paramsOblig = diccSize.keys()
+        if incluido(paramsOblig, (params.keys())):
+            for key,value in params.iteritems():
+                diccSize[key] = diccSize[key] + [value]
     else:
         params = p[2]['parametros']
         paramsOblig = idDicObligatory[p[1]]
@@ -69,7 +76,9 @@ def p_state(p):
 
             listaFiguras.append(figura)
         else:
-            print('Faltan Parametros obligatorios - Finalizo la ejecucion')
+            var = 'nada'
+            print(var)
+            # semantic_error(p[1])
 
 def p_params_nonrecursive(p):
     'params : ID EQUALS valor'
@@ -88,7 +97,7 @@ def p_params_recursive(p):
 
 def p_valor_number(p):
     'valor : NUM'
-    p[0] = p[1]['value']
+    p[0] = p[1]
 
 def p_valor_string(p):
     'valor : STRING'
@@ -96,22 +105,39 @@ def p_valor_string(p):
 
 def p_valor_point(p):
     'valor : LPAREN NUM COMMA NUM RPAREN'
-    p[0] = (p[2]['value'], p[4]['value'])
+    p[0]['value'] = (p[2]['value'], p[4]['value'])
+    p[0]['lineno'] = p[1]['lineno']
+    p[0]['lexpos'] = p[1]['lexpos']
 
 def p_valor_array(p):
     'valor : LBRACKET array RBRACKET'
-    p[0] = p[2]
+    p[0]['value'] = p[2]['value']
+    p[0]['lineno'] = p[1]['lineno']
+    p[0]['lexpos'] = p[1]['lexpos']
 
 def p_array_element(p):
     'array : LPAREN NUM COMMA NUM RPAREN'
-    p[0] = [(p[2]['value'], p[4]['value'])]
+    p[0]['value'] = [(p[2]['value'], p[4]['value'])]
+    p[0]['lineno'] = p[1]['lineno']
+    p[0]['lexpos'] = p[1]['lexpos']
 
 def p_array_recursive(p):
     'array : LPAREN NUM COMMA NUM RPAREN COMMA array'
-    p[0] = [(p[2]['value'], p[4]['value'])] + p[7]
+    p[0]['value'] = [(p[2]['value'], p[4]['value'])] + p[7]
+    p[0]['lineno'] = p[1]['lineno']
+    p[0]['lexpos'] = p[1]['lexpos']
 
 def p_error(token):
     message = "[Syntax error]"
+    if token is not None:
+        message += "\ntype:" + token.type
+        message += "\nvalue:" + str(token.value)
+        message += "\nline:" + str(token.lineno)
+        message += "\nposition:" + str(token.lexpos)
+    raise Exception(message)
+
+def semantic_error(token):
+    message = "[Semantic error]"
     if token is not None:
         message += "\ntype:" + token.type
         message += "\nvalue:" + str(token.value)
