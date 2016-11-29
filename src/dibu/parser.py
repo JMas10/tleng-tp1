@@ -20,5 +20,7 @@ if __name__ == "__main__":
 
     lexer = lex(module=lexer_rules)
     parser = yacc(module=parser_rules)
-
-    ast = parser.parse(text, lexer)
+    try:
+        parser.parse(text, lexer)
+    except parser_rules.SemanticException as exception:
+        print "Semantic error: " + str(exception)

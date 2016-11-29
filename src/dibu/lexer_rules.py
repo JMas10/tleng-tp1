@@ -36,7 +36,7 @@ def t_STRING(token):
 
 def t_ID(token):
     r"[a-zA-Z_+*-][a-zA-Z0-9_+*-]*"
-    string_value = token.value[1:-1]
+    string_value = str(token.value)
     string_line = token.lineno
     string_pos = token.lexpos
     token.value = {"value": string_value, "lineno": string_line, 'lexpos': string_pos}
