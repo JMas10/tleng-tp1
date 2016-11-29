@@ -57,6 +57,12 @@ class Line:
         self.line_width = line_width
         return
 
+    def from_(self, start):
+        self.fill_color = start
+
+    def to(self, end):
+        self.end = end
+
     def fill(self, fill_color):
         self.fill_color = fill_color
 
@@ -72,18 +78,18 @@ class Line:
 
 class Circle:
     def __init__(self,center=(100,100),radius=40,fill_color='white',line_color='black',line_width=1):
-        self.center = center
-        self.radius = radius
+        self.centro = center
+        self.radio = radius
         self.fill_color = fill_color
         self.line_color = line_color
         self.line_width = line_width
         return
 
     def center(self, center):
-        self.center = center
+        self.centro = center
 
     def radius(self, radius):
-        self.radius = radius
+        self.radio = radius
 
     def fill(self, fill_color):
         self.fill_color = fill_color
@@ -96,12 +102,12 @@ class Circle:
 
     def strarray(self):
         return ["  <circle cx=\"%d\" cy=\"%d\" r=\"%d\"\n" %\
-                (self.center[0],self.center[1],self.radius),
+                (self.centro[0],self.centro[1],self.radio),
                 "    style=\"fill:%s;stroke:%s;stroke-width:%d\"  />\n" % (self.fill_color, self.line_color,self.line_width)]
 
 class Ellipse:
     def __init__(self,center=(100,100),radius_x=20,radius_y=30,fill_color='white',line_color='black',line_width=1):
-        self.center = center
+        self.centro = center
         self.radiusx = radius_x
         self.radiusy = radius_y
         self.fill_color = fill_color
@@ -109,7 +115,7 @@ class Ellipse:
         self.line_width = line_width
 
     def center(self, center):
-        self.center = center
+        self.centro = center
 
     def rx(self, radius_x):
         self.radiusx = radius_x
@@ -128,18 +134,18 @@ class Ellipse:
 
     def strarray(self):
         return ["  <ellipse cx=\"%d\" cy=\"%d\" rx=\"%d\" ry=\"%d\"\n" %\
-                (self.center[0],self.center[1],self.radius_x,self.radius_y),
+                (self.centro[0],self.centro[1],self.radius_x,self.radius_y),
                 "    style=\"fill:%s;stroke:%s;stroke-width:%d\"/>\n" % (self.fill_color, self.line_color ,self.line_width)]
 
 class Polygon:
     def __init__(self,points=[(100,100)],fill_color='white',line_color='black',line_width=1):
-        self.points = points
+        self.puntos = points
         self.fill_color = fill_color
         self.line_color = line_color
         self.line_width = line_width
 
     def points(self, points):
-        self.points = points
+        self.puntos = points
 
     def fill(self, fill_color):
         self.fill_color = fill_color
@@ -152,20 +158,20 @@ class Polygon:
 
     def strarray(self):
         polygon="<polygon points=\""
-        for point in self.points:
+        for point in self.puntos:
             polygon+=" %d,%d" % (point[0],point[1])
         return [polygon,\
                "\" \nstyle=\"fill:%s;stroke:%s;stroke-width:%d\"/>\n" %\
                (self.fill_color, self.line_color, self.line_width)]
 class Polyline:
     def __init__(self,points=[(100,100)],fill_color='white',line_color='black',line_width=1):
-        self.points = points
+        self.puntos = points
         self.fill_color = fill_color
         self.line_color = line_color
         self.line_width = line_width
 
     def points(self, points):
-        self.points = points
+        self.puntos = points
 
     def fill(self, fill_color):
         self.fill_color = fill_color
@@ -178,7 +184,7 @@ class Polyline:
 
     def strarray(self):
         polyline="<polyline points=\""
-        for point in self.points:
+        for point in self.puntos:
             polyline+=" %d,%d" % (point[0],point[1])
         return [polyline,\
                "\" \nstyle=\"fill:%s;stroke:%s;stroke-width:%d\"/>\n" %\

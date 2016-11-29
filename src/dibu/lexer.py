@@ -1,98 +1,38 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+import lexer_rules
 
-from sys import argv, exit
-import ply.lex as lex
+from sys import argv
 
-"""
-Lista de tokens
-
-El analizador léxico de PLY (al llamar al método lex.lex()) va a buscar
-para cada uno de estos tokens una variable "t_TOKEN" en el módulo actual.
-
-t_TOKEN puede ser:
-
-- Una expresión regular
-- Una función cuyo docstring sea una expresión regular (bizarro).
-
-En el segundo caso, podemos hacer algunas cosas "extras", como quedarnos
-con algún valor de ese elemento.
-
-"""
-
-tokens = [
-   'NUMBER',
-   'STRING',
-   'ID',
-   'LPAREN',
-   'RPAREN',
-   'LBRACKET',
-   'RBRACKET',
-   'COMMA',
-   'EQUALS'
-]
-
-def t_NUMBER(token):
-    r"[0-9]+(\.[0-9]+)?"
-    if token.value.find(".") >= 0:
-        number_type = "float"
-        number_value = float(token.value)
-    else:
-        number_type = "int"
-        number_value = int(token.value)
-    token.value = {"value": number_value, "type": number_type}
-    return token
-
-def t_STRING(token):
-  r"\"([a-zA-Z_+=*-][a-zA-Z0-9_+*-]*)\""
-  return token
-
-def t_ID(token):
-    r"[a-zA-Z_+=*-][a-zA-Z0-9_+*-]*"
-    return token
-
-def t_NEWLINE(token):
-    r"\n+"
-    token.lexer.lineno += len(token.value)
-
-t_LPAREN = r"\("
-t_RPAREN = r"\)"
-t_LBRACKET = r"\["
-t_RBRACKET = r"\]"
-t_COMMA = r","
-t_EQUALS = r"="
-
-t_ignore = " \t"
+from ply.lex import lex
 
 
-def t_error(token):
-    message = "Token desconocido:"
-    message += "\ntype:" + token.type
-    message += "\nvalue:" + str(token.value)
-    message += "\nline:" + str(token.lineno)
-    message += "\nposition:" + str(token.lexpos)
-    raise Exception(message)
+def dump_tokens(lexer, output_file):
+    token = lexer.token()
 
-# Build the lexer
-lexer = lex.lex()
+    while token is not None:
+        output_file.write("type:" + token.type)
+        output_file.write(" value:" + str(token.value))
+        output_file.write(" line:" + str(token.lineno))
+        output_file.write(" position:" + str(token.lexpos))
+        output_file.write("\n")
 
-def apply(string):
-    """Aplica el análisis léxico al string dado."""
-    lex.input(string)
+        token = lexer.token()
 
-    return list(lexer)
 
-# if __name__ == "__main__":
-#     data = '''size height=200 width=200
-#     rectangle upper_left=(0,0), size=(50, 50), fill="red"
-#     rectangle upper_left=(100,0), size=(50, 50)
-#     rectangle upper_left=(50,50), size=(50, 50)
-#     rectangle upper_left=(150,50), size=(50, 50)
-#     rectangle upper_left=(0,100), size=(50, 50)
-#     rectangle upper_left=(100,100), size=(50, 50)
-#     rectangle upper_left=(50,150), size=(50, 50)
-#     rectangle upper_left=(150,150), size=(50, 50)'''
-#
-#     lexer = lex.lex()
-#     print(apply(data))
-#     print(lexer.lineno)
+if __name__ == "__main__":
+    if len(argv) != 3:
+        print "Parametros invalidos."
+        print "Uso:"
+        print "  lexer.py archivo_entrada archivo_salida"
+        exit()
+
+    input_file = open(argv[1], "r")
+    text = input_file.read()
+    input_file.close()
+
+    lexer = lex(module=lexer_rules)
+
+    lexer.input(text)
+
+    output_file = open(argv[2], "w")
+    dump_tokens(lexer, output_file)
+    output_file.close()
