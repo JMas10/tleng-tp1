@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.28)  28 NOV 2016 12:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.28)  30 NOV 2016 19:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1440,8 +1440,10 @@ Package: pgfplotstable 2016/01/06 v1.13 Table typesetting and Pretty-printing (
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.code
 .tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.colt
-ype.code.tex)))
-No file informe.aux.
+ype.code.tex))) (./informe.aux
+LaTeX Info: Redefining \. on input line 24.
+LaTeX Info: Redefining \% on input line 24.
+)
 \openout1 = `informe.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
@@ -1459,6 +1461,7 @@ LaTeX Font Info:    ... okay on input line 83.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 83.
 LaTeX Font Info:    ... okay on input line 83.
 LaTeX Font Info:    Try loading font information for OT1+bch on input line 83.
+
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1bch.fd
 File: ot1bch.fd 2004/10/18 font definitions for OT1/bch.
 )
@@ -1538,18 +1541,19 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 83.
 LaTeX Info: Redefining \pageref on input line 83.
 LaTeX Info: Redefining \nameref on input line 83.
+
+(./informe.out) (./informe.out)
 \@outlinefile=\write7
 \openout7 = `informe.out'.
 
-
-ABD: EveryShipout initializing macros
+ ABD: EveryShipout initializing macros
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.13} into 
 your preamble.
  on input line 83.
 
-<imagenes/logodc.jpg, id=7, 215.6055pt x 83.5923pt>
+<imagenes/logodc.jpg, id=23, 215.6055pt x 83.5923pt>
 File: imagenes/logodc.jpg Graphic file (type jpg)
  <use imagenes/logodc.jpg>
 Package pdftex.def Info: imagenes/logodc.jpg used on input line 92.
@@ -1564,7 +1568,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 92.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<imagenes/logouba.jpg, id=8, 225.4824pt x 231.7458pt>
+<imagenes/logouba.jpg, id=24, 225.4824pt x 231.7458pt>
 File: imagenes/logouba.jpg Graphic file (type jpg)
 
 <use imagenes/logouba.jpg>
@@ -1612,7 +1616,10 @@ Package babel Info: Redefining spanish shorthand "?
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./imagenes/logodc.jpg> <./
-imagenes/logouba.jpg>]
+imagenes/logouba.jpg>] (./informe.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
 \tf@toc=\write8
 \openout8 = `informe.toc'.
 
@@ -1695,7 +1702,6 @@ Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 104.
  (./gramatica.tex
 LaTeX Font Info:    Try loading font information for OMS+bch on input line 10.
-
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsbch.fd
 File: omsbch.fd 
 )
@@ -1767,18 +1773,75 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 108.
  (./lexer.tex
-! Undefined control sequence.
-<recently read> \n 
-                   
-l.27 NEWLINE: El salto de linea ($\n
-                                    $). Este tiene la particularidad de que ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+Underfull \hbox (badness 10000) in paragraph at lines 1--5
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--9
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--14
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--16
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--20
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--22
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--24
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--26
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--29
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--34
+
+ []
 
 )
+Underfull \hbox (badness 10000) in paragraph at lines 35--110
+
+ []
+
 LaTeX Info: Redefining \. on input line 111.
 LaTeX Info: Redefining \% on input line 111.
 Package babel Info: Redefining spanish shorthand <<
@@ -1805,7 +1868,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 111.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 111.
- [5]
+[5]
 Package babel Info: Redefining spanish shorthand <<
 (babel)             in language  on input line 112.
 Package babel Info: Redefining spanish shorthand >>
@@ -1818,7 +1881,102 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 112.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 112.
- (./parser.tex)
+ (./parser.tex
+Underfull \hbox (badness 10000) in paragraph at lines 1--15
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--18
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--20
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--22
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--28
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--31
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--33
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--37
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
+
+ []
+
+LaTeX Info: Redefining \. on input line 45.
+LaTeX Info: Redefining \% on input line 45.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 45.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 45.
+[6])
+Underfull \hbox (badness 10000) in paragraph at lines 46--114
+
+ []
+
 LaTeX Info: Redefining \. on input line 116.
 LaTeX Info: Redefining \% on input line 116.
 Package babel Info: Redefining spanish shorthand <<
@@ -1845,7 +2003,7 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 116.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 116.
- [6]
+[7]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 116.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 116.
  (./informe.aux
@@ -1854,26 +2012,20 @@ LaTeX Info: Redefining \% on input line 24.
 )
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 116.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 116.
+Package rerunfilecheck Info: File `informe.out' has not changed.
+(rerunfilecheck)             Checksum: 2D46B8F1567D2CD2AE3967F41E86DDC0;178.
 
-
-Package rerunfilecheck Warning: File `informe.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `informe.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  2D46B8F1567D2CD2AE3967F41E86DDC0;178.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 116.
  ) 
 Here is how much of TeX's memory you used:
- 35993 strings out of 494891
- 822847 string characters out of 6179038
- 1047290 words of memory out of 5000000
- 38590 multiletter control sequences out of 15000+600000
- 22446 words of font info for 49 fonts, out of 8000000 for 9000
+ 36009 strings out of 494891
+ 823019 string characters out of 6179038
+ 1052394 words of memory out of 5000000
+ 38596 multiletter control sequences out of 15000+600000
+ 23718 words of font info for 50 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
  62i,12n,97p,913b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -1885,10 +2037,10 @@ ic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
 10.pfb>
-Output written on informe.pdf (6 pages, 446962 bytes).
+Output written on informe.pdf (7 pages, 452369 bytes).
 PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
- 59 compressed objects within 1 object stream
- 12 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 102 PDF objects out of 1000 (max. 8388607)
+ 82 compressed objects within 1 object stream
+ 13 named destinations out of 1000 (max. 500000)
+ 55 words of extra memory for PDF output out of 10000 (max. 10000000)
 

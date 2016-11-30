@@ -1,48 +1,46 @@
-En esta secciÛn vamos a explicar el analizador sint·ctico o parser implementado . El an·lisis sint·ctico convertir· el texto de entrada 
-en el ·rbol de derivaciÛn pertinente. A partir de ello hacemos el an·lisis de las sentencias, utilizando estructuras auxiliares para
-cumplir posteriormente con el requerimiento de la generaciÛn del texto de salida (en formato svg).
-La idea general fue definir una funciÛn que represente cada una de las producciones de nuestra, y dentro de cada una ir manipulando la 
-informaciÛn para luego generar el output requerido.
-Como atributos utilizamos lineno y lexpos para detallar el n˙mero de lÌnea y posiciÛn respectivamente, mientras que el atributo value nos devuelve el valor.
-Como estructuras auxiliares utilizamos un diccionario y una lista. El primero representa los par·metros obligatorios de cad una de las
-figuras, lo utilizamos dentro de la produccion STATE para chequear que todos los par·metros obligatorios est·n dentro de la cadena de entrada
-para cada figura en particular. El segundo es simplemente una lista donde iremos acumulando las distintas figuras que se fueron generando, teniendo 
-en cuenta que nuestro parser es bottom-up, las figuras se iran generando a partir de las hojas y una vez que se llegue a la producciÛn inicial, tendremos
+En esta secci√≥n vamos a explicar el analizador sint√°ctico o parser implementado . El an√°lisis sint√°ctico convertir√° el texto de entrada
+en el √°rbol de derivaci√≥n pertinente. A partir de ello hacemos el an√°lisis de las sentencias, utilizando estructuras auxiliares para
+cumplir posteriormente con el requerimiento de la generaci√≥n del texto de salida (en formato svg).
+La idea general fue definir una funci√≥n que represente cada una de las producciones de nuestra, y dentro de cada una ir manipulando la
+informaci√≥n para luego generar el output requerido.
+Como atributos utilizamos lineno y lexpos para detallar el n√∫mero de l√≠nea y posici√≥n respectivamente, mientras que el atributo value nos devuelve el valor.
+Como estructuras auxiliares utilizamos un diccionario y una lista. El primero representa los par√°metros obligatorios de cad una de las
+figuras, lo utilizamos dentro de la produccion STATE para chequear que todos los par√°metros obligatorios est√°n dentro de la cadena de entrada
+para cada figura en particular. El segundo es simplemente una lista donde iremos acumulando las distintas figuras que se fueron generando, teniendo
+en cuenta que nuestro parser es bottom-up, las figuras se iran generando a partir de las hojas y una vez que se llegue a la producci√≥n inicial, tendremos
 la lista llena de las figuras que debemos imprimir.
-Agregamos una funciÛn que hiciera las veces de producciÛn inicial solo a fines pr·cticos, para poder generar el lienzo final, e ir 
+Agregamos una funci√≥n que hiciera las veces de producci√≥n inicial solo a fines pr√°cticos, para poder generar el lienzo final, e ir
 agregando las figuras que posteriormente dibujaremos.
-A continuaciÛn haremos un an·lisis de cada una de esas funciones para explicar cu·l es su rol.
+A continuaci√≥n haremos un an√°lisis de cada una de esas funciones para explicar cu√°l es su rol.\\
 
-P_START: genera el lienzo llamando a la funciÛn Scene (definida en la clase helper.py) y luego le agrega las figuras de la lista al mismo.
-TambiÈn chequea que no se haya llamado a la funciÛn size mas de una vez.
+P_START: genera el lienzo llamando a la funci√≥n Scene (definida en la clase helper.py) y luego le agrega las figuras de la lista al mismo.
+Tambi√©n chequea que no se haya llamado a la funci√≥n size mas de una vez.\\
 
-P_PROGRAM_EMPTY: representa al programa que se genera a partir de la producciÛn P $\mid$ $\lambda$\\
+P_PROGRAM_EMPTY: representa al programa que se genera a partir de la producci√≥n P $\mid$ $\lambda$\\
 
-P_PROGRAM_NONEMPTY: representa al programa que se genera a partir de la producciÛn P $\rightarrow$ S newline P
+P_PROGRAM_NONEMPTY: representa al programa que se genera a partir de la producci√≥n P $\rightarrow$ S newline P\\
 
-P_STATE: Es la funciÛn m·s compleja del parser. Primero chequea que el token sea size, si lo es, se revisa que tenga el height y width que son los par·metros requeridos.
-Si el token no es size estamos ante la producciÛn para generar una figura, por ello, se guarda los parametros recolectados por los nodos hijos en una variable,
- e inicializa la figura como objeto (correspondiente al nombre de la misma, dentro de una funciÛn auxiliar).
-Si la generaciÛn no lanza una excepciÛn, va completando los atributos requeridos por esa figura y la agrega a la lista de resultados. Si no se genera bien la figura o si
-los par·metros son incorrectos se lanza la excepciÛn correspondiente.
+P_STATE: Es la funci√≥n m√°s compleja del parser. Primero chequea que el token sea size, si lo es, se revisa que tenga el height y width que son los par√°metros requeridos.
+Si el token no es size estamos ante la producci√≥n para generar una figura, por ello, se guarda los par√°metros recolectados por los nodos hijos en una variable,
+ e inicializa la figura como objeto (correspondiente al nombre de la misma, dentro de una funci√≥n auxiliar).
+Si la generaci√≥n no lanza una excepci√≥n, va completando los atributos requeridos por esa figura y la agrega a la lista de resultados. Si no se genera bien la figura o si
+los par√°metros son incorrectos se lanza la excepci√≥n correspondiente.\\
 
-P_PARAMS_NONRECURSIVE: Representa la asignaciÛn de un valor a un par·metro sin recursiÛn, es decir es el ˙ltimo de la lista o es ˙nico. Dentro de esta funciÛn se agrega 
-el n˙mero de lÌnea, posiciÛn y valor del par·metro al diccionario de par·metros.
+P_PARAMS_NONRECURSIVE: Representa la asignaci√≥n de un valor a un par√°metro sin recursi√≥n, es decir es el √∫ltimo de la lista o es √∫nico. Dentro de esta funci√≥n se agrega
+el n√∫mero de linea, posici√≥n y valor del par√°metro al diccionario de par√°metros.\\
 
-P_PARAMS_RECURSIVE: Representa la seguidilla de par·metros separados por coma. Chequea que no haya repetidos y los va agregando a la lista de par·metros.
+P_PARAMS_RECURSIVE: Representa la seguidilla de par√°metros separados por coma. Chequea que no haya repetidos y los va agregando a la lista de par√°metros.\\
 
-P_VALOR_NUMBER: Realiza la asignaciÛn de un valor a un par·metro de tipo numÈrico.
+P_VALOR_NUMBER: Realiza la asignaci√≥n de un valor a un par√°metro de tipo num√©rico.\\
 
-P_VALOR_STRING: Realiza la asignaciÛn de un valor a un par·metro de tipo string.
+P_VALOR_STRING: Realiza la asignaci√≥n de un valor a un par√°metro de tipo string.\\
 
-P_VALOR_POINT: Realiza la asignaciÛn de un valor a un par·metro de tipo punto, es decir dos n˙meros separados por coma.
+P_VALOR_POINT: Realiza la asignaci√≥n de un valor a un par√°metro de tipo punto, es decir dos n√∫meros separados por coma.\\
 
-P_VALOR_ARRAY: Realiza la asignaciÛn de un valor a un par·metro de tipo arreglo.
+P_VALOR_ARRAY: Realiza la asignaci√≥n de un valor a un par√°metro de tipo arreglo.\\
 
-P_ARRAY_ELEMENT: Representa el array con un ˙nico elemento, o el elemento final de un arreglo.
+P_ARRAY_ELEMENT: Representa el array con un √∫nico elemento, o el elemento final de un arreglo.\\
 
-P_ARRAY_RECURSIVE: Genera un nuevo elemento en un array y lo appendea a los elementos que siguen en la producciÛn
+P_ARRAY_RECURSIVE: Genera un nuevo elemento en un array y lo appendea a los elementos que siguen en la producci√≥n.\\
 
-P_ERROR: Define los errores sint·cticos que ocurrieron. A partir del token genera el mensaje correspondiente.
-
-
+P_ERROR: Define los errores sint√°cticos que ocurrieron. A partir del token genera el mensaje correspondiente.\\

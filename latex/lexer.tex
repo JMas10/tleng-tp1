@@ -1,37 +1,37 @@
 En esta sección vamos a explicar el analizador léxico implementado para la gramática descripta anteriormente. Al aplicar un
 lexer sobre una cadena de caracteres este devolverá verdadero su la misma no contiene errores de carácter léxico como por
 ejemplo caracteres que el lenguaje no reconoce. Para llevar a cabo este analizador contamos con una serie de tokens de
-los cuales se da una descripción de sus posibles contenidos. Estos son:
+los cuales se da una descripción de sus posibles contenidos. Estos son:\\
 
 NUMBER: Son todos los números compuestos por los caracteres numéricos del 0 al 9 y el punto. El lexer identifica el tipo
 del valor numérico siendo estos enteros y de punto flotante de acuerdo a si el numero posee o no el punto. Esto se hace
-para el posterior control de errores.
+para el posterior control de errores.\\
 
 STRING: Cadenas de caracteres entre comillas compuestas por las letras de la a a la z, incluidas mayúsculas, los números del
-0 al 9 y los símbolos +,- y *.
+0 al 9 y los símbolos +,- y *.\\
 
-ID: Igual que STRING pero sin las comillas.
+ID: Igual que STRING pero sin las comillas.\\
 
-LPAREN: El carácter $[$.
+LPAREN: El carácter $[$.\\
 
-RPAREN: El carácter $]$.
+RPAREN: El carácter $]$.\\
 
-LBRACKET: El carácter $($.
+LBRACKET: El carácter $($.\\
 
-RBRACKET: El carácter $)$.
+RBRACKET: El carácter $)$.\\
 
-COMMA: El carácter $,$.
+COMMA: El carácter $,$.\\
 
-EQUALS: El carácter $=$.
+EQUALS: El carácter $=$.\\
 
-NEWLINE: El salto de linea ($\n$). Este tiene la particularidad de que aumenta en una linea el largo del texto, esto se
-utiliza para detectar la posición de los errores.
+NEWLINE: El salto de linea. Este tiene la particularidad de que aumenta en una linea el largo del texto, esto se
+utiliza para detectar la posición de los errores.\\
 
-IGNORE: El carácter vacío.
+IGNORE: El carácter vacío.\\
 
 ERROR: Este aparece cuando se encuentra un token desconocido. En consecuencia se guarda la linea, valor, posición y
-tipo de valor para el error. Con este último cumplimos que si la cadena es inválida se detectara el error y se informará de él.
+tipo de valor para el error. Con este último cumplimos que si la cadena es inválida se detectara el error y se informará de él.\\
 
 Como se puede ver con esta serie de tokens y sus respectivas implementaciones podemos describir todos los posibles no-terminales
 necesarios para nuestra gramática. Quedan todavía restricciones como por ejemplo que ID solamente puede tener como valores a los
-identificadores de las instrucciones.
+identificadores de las instrucciones.\\
