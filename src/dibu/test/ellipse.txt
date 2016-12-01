@@ -1,0 +1,4 @@
+size width=1200, height=400
+rectangle size=(398, 1198), upper_left=(1,1), fill="none", stroke="blue", stroke-width=2
+ellipse center=(300, 200), fill="red", ry=100, rx=250
+ellipse ry=100, fill="none", rx=250, center=(900, 200), stroke="blue", stroke-width=20

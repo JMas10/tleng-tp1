@@ -1,0 +1,7 @@
+size width=1200, height=400
+rectangle size=(398, 1198), upper_left=(1,1), fill="none", stroke="blue", stroke-width=2
+line from=(100,300), to=(300,100), stroke-width=5, stroke="green"
+line from=(300,300), to=(500,100), stroke-width=10, stroke="green"
+line from=(500,300), to=(700,100), stroke-width=15, stroke="green"
+line from=(700,300), to=(900,100), stroke-width=20, stroke="green"
+line from=(900,300), to=(1100,100), stroke-width=25, stroke="green"

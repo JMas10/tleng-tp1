@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<svg height="400" width="1200" >
+ <g style="fill-opacity:1.0; stroke:black;
+  stroke-width:1;">
+  <rect x="1" y="1" height="398"
+    width="1198" style="fill:none;stroke:blue;stroke-width:2" />
+<polygon points=" 350,75 379,161 469,161 397,215 423,301 350,250 277,301 303,215 231,161 321,161" 
+style="fill:red;stroke:blue;stroke-width:10"/>
+<polygon points=" 850,75 958,137 958,262 850,325 742,262 742,137" 
+style="fill:lime;stroke:blue;stroke-width:10"/>
+ </g>
+</svg>

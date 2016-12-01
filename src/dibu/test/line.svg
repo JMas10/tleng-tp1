@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<svg height="400" width="1200" >
+ <g style="fill-opacity:1.0; stroke:black;
+  stroke-width:1;">
+  <rect x="1" y="1" height="398"
+    width="1198" style="fill:none;stroke:blue;stroke-width:2" />
+  <line x1="100" y1="300" x2="300" y2="100" style="fill:black;stroke:green;stroke-width:5"/>
+  <line x1="300" y1="300" x2="500" y2="100" style="fill:black;stroke:green;stroke-width:10"/>
+  <line x1="500" y1="300" x2="700" y2="100" style="fill:black;stroke:green;stroke-width:15"/>
+  <line x1="700" y1="300" x2="900" y2="100" style="fill:black;stroke:green;stroke-width:20"/>
+  <line x1="900" y1="300" x2="1100" y2="100" style="fill:black;stroke:green;stroke-width:25"/>
+ </g>
+</svg>

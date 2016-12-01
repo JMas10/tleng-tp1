@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<svg height="400" width="1200" >
+ <g style="fill-opacity:1.0; stroke:black;
+  stroke-width:1;">
+  <rect x="1" y="1" height="398"
+    width="1198" style="fill:none;stroke:blue;stroke-width:2" />
+  <ellipse cx="300" cy="200" rx="250" ry="100"
+    style="fill:red;stroke:none;stroke-width:1"/>
+  <ellipse cx="900" cy="200" rx="250" ry="100"
+    style="fill:none;stroke:blue;stroke-width:20"/>
+ </g>
+</svg>

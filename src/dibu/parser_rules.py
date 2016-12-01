@@ -18,16 +18,17 @@ listaFiguras = []
 
 def p_start(p):
     'start : program'
-    scene = Scene('imagen')
+    scene = Scene()
     cantidadSize = len(diccSize['height'])
     if cantidadSize > 1:
         raise SemanticException("Dos o Mas Size " + "\nline: " + str(diccSize["lineno"][1]) + "\nposition: " + str(diccSize["lexpos"][1]))
     if cantidadSize == 0:
-        scene = Scene("imagen")
+        scene = Scene()
     else:
         height = diccSize['height'][0]
         width = diccSize['width'][0]
-        scene = Scene("imagen", height, width)
+        scene = Scene()
+        scene.heightAndWidth(height, width)
     for elem in listaFiguras:
         scene.add(elem)
     p[0] = scene
@@ -112,7 +113,7 @@ def p_array_element(p):
 
 def p_array_recursive(p):
     'array : LPAREN NUM COMMA NUM RPAREN COMMA array'
-    value = [(p[2]['value'], p[4]['value'])] + p[7]
+    value = [(p[2]['value'], p[4]['value'])] + p[7]['value']
     p[0] = {"value": value, "lineno": p[2]["lineno"], "lexpos": p[2]["lexpos"]}
 
 def p_error(token):

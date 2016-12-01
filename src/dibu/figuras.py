@@ -14,6 +14,10 @@ class Scene:
     def nombre(self, name):
         self.name = name
 
+    def heightAndWidth(self, height, width):
+        self.height = height
+        self.width = width
+
     def add(self,item): self.items.append(item)
 
     def strarray(self):
@@ -111,7 +115,7 @@ class Ellipse:
     def rx(self, radius_x):
         self.radiusx = radius_x
 
-    def ry(self, radius_x):
+    def ry(self, radius_y):
         self.radiusy = radius_y
 
     def fill(self, fill_color):
@@ -125,7 +129,7 @@ class Ellipse:
 
     def strarray(self):
         return ["  <ellipse cx=\"%d\" cy=\"%d\" rx=\"%d\" ry=\"%d\"\n" %\
-                (self.centro[0],self.centro[1],self.radius_x,self.radius_y),
+                (self.centro[0],self.centro[1],self.radiusx,self.radiusy),
                 "    style=\"fill:%s;stroke:%s;stroke-width:%d\"/>\n" % (self.fill_color, self.line_color ,self.line_width)]
 
 class Polygon:
