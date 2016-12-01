@@ -1,10 +1,10 @@
 En esta sección vamos a explicar el analizador sintáctico o parser implementado . El análisis sintáctico convertirá el texto de entrada
 en el árbol de derivación pertinente. A partir de ello hacemos el análisis de las sentencias, utilizando estructuras auxiliares para
 cumplir posteriormente con el requerimiento de la generación del texto de salida (en formato svg).
-La idea general fue definir una función que represente cada una de las producciones de nuestra, y dentro de cada una ir manipulando la
+La idea general fue definir una función que represente cada una de las producciones de nuestra gramática, y dentro de cada una ir manipulando la
 información para luego generar el output requerido.
 Como atributos utilizamos lineno y lexpos para detallar el número de línea y posición respectivamente, mientras que el atributo value nos devuelve el valor.
-Como estructuras auxiliares utilizamos un diccionario y una lista. El primero representa los parámetros obligatorios de cad una de las
+Como estructuras auxiliares utilizamos un diccionario y una lista. El primero representa los parámetros obligatorios de cada una de las
 figuras, lo utilizamos dentro de la produccion STATE para chequear que todos los parámetros obligatorios están dentro de la cadena de entrada
 para cada figura en particular. El segundo es simplemente una lista donde iremos acumulando las distintas figuras que se fueron generando, teniendo
 en cuenta que nuestro parser es bottom-up, las figuras se iran generando a partir de las hojas y una vez que se llegue a la producción inicial, tendremos
