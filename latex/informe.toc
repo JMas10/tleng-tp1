@@ -3,3 +3,6 @@
 \contentsline {section}{\numberline {2}Gram\IeC {\'a}tica}{4}{section.2}
 \contentsline {section}{\numberline {3}Lexer}{6}{section.3}
 \contentsline {section}{\numberline {4}Parser}{7}{section.4}
+\contentsline {section}{\numberline {5}Requerimientos de Software}{9}{section.5}
+\contentsline {section}{\numberline {6}Test}{10}{section.6}
+\contentsline {section}{\numberline {7}Conclusiones}{11}{section.7}
