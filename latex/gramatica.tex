@@ -7,7 +7,7 @@ PARAMS $\rightarrow$  id = V PARAMS P $\mid$ id = V\\
 V $\rightarrow$ num $\mid$ string $\mid$ (num, num) $\mid$ [ARRAY]\\
 ARRAY $\rightarrow$ [num, num], ARRAY $\mid$ [num, num]\\
 \\
-\textit{G} = \{\{P, S, PARAMS, V, ARRAY\}, \{num, string, (, , , ), [, ], =, id\}, Descripto por la gramática, P\}\\
+\textit{G} = \{\{P, S, PARAMS, V, ARRAY\}, \{num, string, (, , , ), [, ], =, id, newline\}, Descripto por la gramática, P\}\\
 
 Como se describe en el enunciado, el lenguaje \textit{Dibu} es una serie de instrucciones de la forma:\\
 \\
@@ -20,4 +20,25 @@ PARAMS posee la serie de compuesta por: parámetro = valor. S describe una instr
 finalmente P, describe la serie compuesta de las instrucciones descriptas en el no-terminal S. Con estas producciones se
 puede ver con estos que nuestra gramática describe precisamente la serie de instrucciones de \textit{Dibu}. Se debe
 aclarar que esta gramática no describe todas las restricciones de \textit{Dibu}, como por ejemplo que solo aparezca la
-instrucción size una vez. Estas cuestriones se tratarán en el lexer y el parser.
+instrucción size una vez. Estas cuestriones se tratarán en el lexer y el parser.\\
+
+Por otro lado tenemos el tipo de la gramática, para exponer esta información no realizaremos una demostración rigurosa
+aunque si analizaremos la misma descartando en primera instancia que la gramática sea ambigua. Posteriormente reafirmaremos
+en que tipos de gramáticas no se cuenta y el por qué.\\
+
+Esta gramática no es LL(1) porque las producciones de PARAMS no cumplen con el
+requerimiento de estas gramáticas(SD(PARAMS $\rightarrow$ id = V PARAMS P) $\cup$ SD(PARAMS $\rightarrow$ id = V)).\\
+
+La gramática tampoco es LR(0). A continuación se mostrara el autómata correspondiente a la gramática, marcando los conflictos.\\
+
+
+\includegraphics[scale=0.5]{imagenes/tleng.png}
+
+
+No es SLR ya que los siguientes de PARAMS son \{newline, id\} por lo tanto no se resuelve el conflicto ya que hay un
+shift/reduce provocado por el terminal id aunque si resuelve los demás conflictos.\\
+
+Finalmente nuestra gramática es LR(1), observemos que el primer conflicto quedaría resuelto ya que solo haría reduce en
+ \$, en el caso del segundo se resolvería de la misma forma. En el caso del tercero, en una producción anterior arrastraría
+ el token newline y terminaría reduciendo por este, eliminando así el conflicto provocado por id. Por último tenemos el cuarto
+similar al anterior en las producciones anteriores se los asociaría con el token ] el cual eliminaría el conflicto con la coma.
