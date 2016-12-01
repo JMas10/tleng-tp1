@@ -44,3 +44,35 @@ P_ARRAY_ELEMENT: Representa el array con un único elemento, o el elemento final
 P_ARRAY_RECURSIVE: Genera un nuevo elemento en un array y lo appendea a los elementos que siguen en la producción.\\
 
 P_ERROR: Define los errores sintácticos que ocurrieron. A partir del token genera el mensaje correspondiente.\\
+
+Nuestra implementación utiliza Scene, una clase pensada para construir una cadena de SVG a partir de los datos de los
+parámetros que tomamos de la cadena de \textit{Dibu}. Después de declarar nuestra Scene se puede agregar lineas de
+figuras utilizando las funciones del mismo nombre que la figura y los parámetros. Al final, la cadena de Scene es una
+cadena SVG la cual podemos utilizar para generar la imagen pedida.\\
+
+Nuestro parser actúa como una traducción dirigida por sintaxis que se encargara de analizar la cadena hasta encontrar
+algún error, como por ejemplo dos size en una cadena. Para esto se recurrirá a los siguientes atributos:\\
+\\
+lineno: Es un número entero que indica la linea actual. Lo poseen num, string, y todos los no-terminales.\\
+lexpos: Es un número entero que indica la posición en la linea. Lo poseen num, string, y todos los no-terminales.\\
+value: Indica el valor según el contexto en que se encuentra. Lo poseen num, string y todos los no-terminales excepto
+por PARAMS.\\
+parámetros: Es un diccionario que asocia a los nombres de los parámetros con su valor en una linea. Lo tiene PARAMS.\\
+
+Además de estos atributos, tenemos dos diccionarios. El primero es diccSize que usamos para guardarnos los size's que
+aparecen en la cadena, en el caso de que no exista ninguno entonces se usará el Scene sin especificar un tamaño. Si hay
+mas de uno entonces estamos ante un error semántico que debemos avisar. El segundo de estos diccionarios es el de nombre
+idDicObligatory que sirve para poder guardar de forma estática los parámetros obligatorios de cada figura. Esto sirve
+para comprobar si en nuestra cadena todas las figuras tienen al menos todos sus parámetros obligatorios.\\
+
+Por último tenemos a listaFiguras la cual guarda las figuras construidas para posteriormente agregarse al Scene.\\
+
+Utilizando los atributos y las estructuras adicionales cubrir todos los casos en el lenguaje \textit{Dibu} tales como
+la repetición de size, que si o si cada figura tenga sus parámetros obligatorios una vez por cada uno y sin orden, lo
+mismo para los opcionales pero sin que tengan que estar todos y además el poder construir la cadena SVG usando Scene.\\
+
+El programa en si toma un archivo de texto que contiene una cadena del lenguaje \textit{Dibu} y el nombre que va a tener
+la imagen resultante del análisis y traducción del primer parámetro. Tenemos un \textit{try-catch}, el cual usaremos
+para poder capturar los errores propios de una cadena de entrada invalida y posteriormente mostrarlos por pantalla
+dando la posición, linea y el tipo de error(Sintáctico, Semántico y de Tokens). Una vez generada la cadena traducida
+de SVG mediante el parser, se la ejecutara generando la imagen y guardándola con el nombre pasado como parámetro.
