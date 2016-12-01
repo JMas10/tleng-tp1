@@ -3,7 +3,7 @@ gramática G:\\
 \\
 P $\rightarrow$ S newline P $\mid$ $\lambda$\\
 S $\rightarrow$ id PARAMS\\
-PARAMS $\rightarrow$  id = V PARAMS P $\mid$ id = V\\
+PARAMS $\rightarrow$  id = V, PARAMS $\mid$ id = V\\
 V $\rightarrow$ num $\mid$ string $\mid$ (num, num) $\mid$ [ARRAY]\\
 ARRAY $\rightarrow$ [num, num], ARRAY $\mid$ [num, num]\\
 \\
@@ -29,16 +29,17 @@ en que tipos de gramáticas no se cuenta y el por qué.\\
 Esta gramática no es LL(1) porque las producciones de PARAMS no cumplen con el
 requerimiento de estas gramáticas(SD(PARAMS $\rightarrow$ id = V PARAMS P) $\cup$ SD(PARAMS $\rightarrow$ id = V)).\\
 
-La gramática tampoco es LR(0). A continuación se mostrara el autómata correspondiente a la gramática, marcando los conflictos.\\
-
+La gramática tampoco es LR(0). A continuación se mostrara el autómata correspondiente a la gramática, marcando los conflictos.
+Solamente se consideraron los estados del autómata que fueran interesantes por sus conflictos.\\
 
 \includegraphics[scale=0.5]{imagenes/tleng.png}
 
 
-No es SLR ya que los siguientes de PARAMS son \{newline, id\} por lo tanto no se resuelve el conflicto ya que hay un
-shift/reduce provocado por el terminal id aunque si resuelve los demás conflictos.\\
+La gramática es SLR ya que conservando el mismo autómata vemos que los siguientes de P y ARRAY que son los implicados en
+las nodos que generan los conflictos son:\\
 
-Finalmente nuestra gramática es LR(1), observemos que el primer conflicto quedaría resuelto ya que solo haría reduce en
- \$, en el caso del segundo se resolvería de la misma forma. En el caso del tercero, en una producción anterior arrastraría
- el token newline y terminaría reduciendo por este, eliminando así el conflicto provocado por id. Por último tenemos el cuarto
-similar al anterior en las producciones anteriores se los asociaría con el token ] el cual eliminaría el conflicto con la coma.
+Siguientes(P) = \{\$\}\\
+Siguientes(ARRAY) = \{ ] \}\\
+
+Con lo cual los nodos 1 y 2 que presentaban conflictos por el lambda quedan resueltos debido a que solamente se reducirá por
+\$ y no por id. Por último el nodo conflictivo 3 solo reducirá con ] por lo que se eliminan todos los conflictos shift/reduce.
