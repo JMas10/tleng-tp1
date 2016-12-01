@@ -11,6 +11,9 @@ tokens = [
    'NEWLINE'
    ]
 
+class TokenException(Exception):
+    pass
+
 def t_NUM(token):
     r"[0-9]+(\.[0-9]+)?"
     if token.value.find(".") >= 0:
@@ -63,4 +66,4 @@ def t_error(token):
     message += "\nvalue:" + str(token.value)
     message += "\nline:" + str(token.lineno)
     message += "\nposition:" + str(token.lexpos)
-    raise Exception(message)
+    raise TokenException(message)

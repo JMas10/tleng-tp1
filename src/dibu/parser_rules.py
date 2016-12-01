@@ -1,9 +1,11 @@
 from lexer_rules import tokens
-from helper import *
+from figuras import *
 
-#TO DO: RESOLVER SIZE Y VER TEMA DE DICC PARAMS
 
 class SemanticException(Exception):
+    pass
+
+class SintacticException(Exception):
     pass
 
 idDicObligatory = {'rectangle': ['upper_left', 'size'], 'line': ['from', 'to'],
@@ -11,38 +13,24 @@ idDicObligatory = {'rectangle': ['upper_left', 'size'], 'line': ['from', 'to'],
                 'text':['t', 'at']}
 
 diccSize = {'height': [], 'width': [], 'lineno': [], 'lexpos': []}
-# diccRect = dict.fromkeys(['origin','height','width','fill_color', 'line_color','line_width'])
-# diccLine = dict.fromkeys(['start','end','color','width'}
-# diccCircle = dict.fromkeys(['center','radius','fill_color','line_color','line_width'])
-# diccEllipse  = dict.fromkeys(['center','radius_x','radius_y','fill_color','line_color','line_width])
-# diccPolyline = dict.fromkeys(['points','fill_color','line_color','line_width'])
-# diccPolygon = dict.fromkeys(['points','fill_color','line_color','line_width'])
-# diccText = dict.fromkeys(['origin','text','size','color'])
-#
-# diccFiguras= {'size': diccSize, 'rectangle': diccRect, 'line': diccLine,
-#                 'circle':diccCircle, 'ellipse':diccEllipse, 'polyline': diccPolyline, 'polygon':diccPolygon,
-#                 'text':diccText}
 
 listaFiguras = []
-# nuevoDicc = {}
 
 def p_start(p):
     'start : program'
-    scene = Scene('resultado')
+    scene = Scene('imagen')
     cantidadSize = len(diccSize['height'])
-    print(cantidadSize)
     if cantidadSize > 1:
-        raise SemanticException("Dos o Mas Size " + "Linea " + str(diccSize["lineno"][1]) + " Posicion " + str(diccSize["lexpos"][1]))
+        raise SemanticException("Dos o Mas Size " + "\nline: " + str(diccSize["lineno"][1]) + "\nposition: " + str(diccSize["lexpos"][1]))
     if cantidadSize == 0:
-        scene = Scene("resultado")
+        scene = Scene("imagen")
     else:
         height = diccSize['height'][0]
         width = diccSize['width'][0]
-        scene = Scene("resultado", height, width)
+        scene = Scene("imagen", height, width)
     for elem in listaFiguras:
         scene.add(elem)
-    scene.write_svg()
-    scene.display()
+    p[0] = scene
 
 def p_program_nonempty(p):
     'program : state NEWLINE program'
@@ -64,7 +52,6 @@ def p_state(p):
                 diccSize[key] = diccSize[key] + [value]
         diccSize["lineno"] = diccSize["lineno"] + [line]
         diccSize["lexpos"] = diccSize["lexpos"] + [pos]
-        print(diccSize)
     else:
         params = p[2]['parametros']
         try:
@@ -72,7 +59,7 @@ def p_state(p):
             figura = inicializarFigura(p[1]["value"])
         except KeyError:
             # Error figura invalida
-            raise SemanticException("Figura Invalida " + "Linea" + str(p[2]["lineno"])+ " Posicion " + str(p[2]["lexpos"]))
+            raise SemanticException("Figura Invalida " + "\nline: " + str(p[2]["lineno"])+ "\nposition: " + str(p[2]["lexpos"]))
         if incluido(paramsOblig, (params.keys())):
             for key,value in params.iteritems():
                 try:
@@ -81,12 +68,12 @@ def p_state(p):
                     metodo(value)
                 except AttributeError:
                     # Error parametro invalido
-                    raise SemanticException("Parametro Invalido " + "Linea" + str(p[2]["lineno"])+ " Posicion " + str(p[2]["lexpos"]))
+                    raise SemanticException("Parametro Invalido " + "\nline: " + str(p[2]["lineno"])+ "\nposition: " + str(p[2]["lexpos"]))
 
             listaFiguras.append(figura)
         else:
             # Error faltan parametros obligatorios
-            raise SemanticException("Faltan Parametros obligatorios " + "Linea" + str(p[2]["lineno"])+ " Posicion " + str(p[2]["lexpos"]))
+            raise SemanticException("Faltan Parametros obligatorios " + "\nline: " + str(p[2]["lineno"])+ "\nposition: " + str(p[2]["lexpos"]))
 
 def p_params_nonrecursive(p):
     'params : ID EQUALS valor'
@@ -98,7 +85,7 @@ def p_params_recursive(p):
     'params : ID EQUALS valor COMMA params'
     if p[1]["value"] in p[5]['parametros']:
         #Error Parametros repetidos
-        raise SemanticException('Parametros repetidos ' + "Linea" + str(p[1]["lineno"])+ " Posicion " + str(p[1]["lexpos"]))
+        raise SemanticException('Parametros repetidos ' + "\nline: " + str(p[1]["lineno"])+ "\nposition: " + str(p[1]["lexpos"]))
     paramDicc = p[5]['parametros']
     paramDicc.update({p[1]["value"]: p[3]["value"]})
     p[0] = {'parametros': paramDicc, "lineno": p[1]["lineno"], "lexpos": p[1]["lexpos"]}
@@ -129,24 +116,13 @@ def p_array_recursive(p):
     p[0] = {"value": value, "lineno": p[2]["lineno"], "lexpos": p[2]["lexpos"]}
 
 def p_error(token):
-    message = "[Syntax error]"
+    message = "Syntax error"
     if token is not None:
         message += "\ntype:" + token.type
         message += "\nvalue:" + str(token.value)
         message += "\nline:" + str(token.lineno)
         message += "\nposition:" + str(token.lexpos)
-    raise Exception(message)
-
-# def semantic_error(tipo, line, position):
-#     message = "[Semantic error]"
-#     last_cr = text.rfind('\n',0,position)
-#     if last_cr < 0:
-# 	       last_cr = 0
-#     column = (position - last_cr) + 1
-#     message += "\ntipo:" + tipo
-#     message += "\nlinea:" + str(line)
-#     message += "\nposicion:" + str(column)
-#     raise Exception(message)
+    raise SintacticException(message)
 
 def incluido(l1, l2):
     for each in l1:
@@ -169,8 +145,6 @@ def inicializarFigura(nombre):
         return Polygon()
     elif nombre == 'text':
         return Text()
-    else:
-        raise KeyError('algo')
 
 def renombrar(nombre):
     #Tengo que renombrar metodos de Dibu porque algunos no son nombre validos de funciones en python

@@ -1,16 +1,4 @@
 #!/usr/bin/env python
-"""\
-SVG.py - Construct/display SVG scenes.
-
-The following code is a lightweight wrapper around SVG files. The metaphor
-is to construct a scene, add objects to it, and then write it to a file
-to display it.
-
-This program uses ImageMagick to display the SVG files. ImageMagick also
-does a remarkable job of converting SVG files into other formats.
-
-This is an enhanced Version of Rick Muller's Code from http://code.activestate.com/recipes/325823-draw-svg-images-in-python/
-"""
 
 import os
 display_prog = "display"
@@ -22,6 +10,9 @@ class Scene:
         self.height = height
         self.width = width
         return
+
+    def nombre(self, name):
+        self.name = name
 
     def add(self,item): self.items.append(item)
 
@@ -49,7 +40,7 @@ class Scene:
         return
 
 class Line:
-    def __init__(self,start=(0,0),end=(10,10),fill_color='white',line_color='black',line_width=1):
+    def __init__(self,start=(0,0),end=(10,10),fill_color='black',line_color='none',line_width=1):
         self.start = start
         self.end = end
         self.fill_color = fill_color
@@ -58,7 +49,7 @@ class Line:
         return
 
     def from_(self, start):
-        self.fill_color = start
+        self.start = start
 
     def to(self, end):
         self.end = end
@@ -77,7 +68,7 @@ class Line:
                 (self.start[0],self.start[1],self.end[0],self.end[1],self.fill_color, self.line_color,self.line_width)]
 
 class Circle:
-    def __init__(self,center=(100,100),radius=40,fill_color='white',line_color='black',line_width=1):
+    def __init__(self,center=(100,100),radius=40,fill_color='black',line_color='none',line_width=1):
         self.centro = center
         self.radio = radius
         self.fill_color = fill_color
@@ -106,7 +97,7 @@ class Circle:
                 "    style=\"fill:%s;stroke:%s;stroke-width:%d\"  />\n" % (self.fill_color, self.line_color,self.line_width)]
 
 class Ellipse:
-    def __init__(self,center=(100,100),radius_x=20,radius_y=30,fill_color='white',line_color='black',line_width=1):
+    def __init__(self,center=(100,100),radius_x=20,radius_y=30,fill_color='black',line_color='none',line_width=1):
         self.centro = center
         self.radiusx = radius_x
         self.radiusy = radius_y
@@ -138,7 +129,7 @@ class Ellipse:
                 "    style=\"fill:%s;stroke:%s;stroke-width:%d\"/>\n" % (self.fill_color, self.line_color ,self.line_width)]
 
 class Polygon:
-    def __init__(self,points=[(100,100)],fill_color='white',line_color='black',line_width=1):
+    def __init__(self,points=[(100,100)],fill_color='black',line_color='none',line_width=1):
         self.puntos = points
         self.fill_color = fill_color
         self.line_color = line_color
@@ -164,7 +155,7 @@ class Polygon:
                "\" \nstyle=\"fill:%s;stroke:%s;stroke-width:%d\"/>\n" %\
                (self.fill_color, self.line_color, self.line_width)]
 class Polyline:
-    def __init__(self,points=[(100,100)],fill_color='white',line_color='black',line_width=1):
+    def __init__(self,points=[(100,100)],fill_color='black',line_color='none',line_width=1):
         self.puntos = points
         self.fill_color = fill_color
         self.line_color = line_color
@@ -191,7 +182,7 @@ class Polyline:
                (self.fill_color, self.line_color, self.line_width)]
 
 class Rectangle:
-    def __init__(self,origin=(100,100),size=(200,200),fill_color='black',line_color='white',line_width=1):
+    def __init__(self,origin=(100,100),size=(200,200),fill_color='black',line_color='none',line_width=1):
         self.origin = origin
         self.height = size[0]
         self.width = size[1]
@@ -224,7 +215,7 @@ class Rectangle:
 
 
 class Text:
-    def __init__(self, origin=(100,100), text=' ', font='Arial',size=12, fill_color='black', line_color='black',line_width=1):
+    def __init__(self, origin=(100,100), text=' ', font='Arial',size="medium", fill_color='black', line_color='none',line_width=1):
         self.origin = origin
         self.text = text
         self.font = font
@@ -256,25 +247,7 @@ class Text:
         self.line_width = line_width
 
     def strarray(self):
-        return ["  <text x=\"%d\" y=\"%d\" font-family=\"%s\" font-size=\"%d\" fill=\"%s\" stroke=\"%s\" stroke-width=\"%d\" >\n" %\
+        return ["  <text x=\"%d\" y=\"%d\" font-family=\"%s\" font-size=\"%s\" fill=\"%s\" stroke=\"%s\" stroke-width=\"%d\" >\n" %\
                 (self.origin[0],self.origin[1],self.font, self.size, self.fill_color, self.line_color ,self.line_width),
                 "   %s\n" % self.text,
                 "  </text>\n"]
-
-def test():
-    scene = Scene('test')
-    scene.add(Line((200,200),(200,300)))
-    scene.add(Line((200,200),(300,200)))
-    scene.add(Line((200,200),(100,200)))
-    scene.add(Line((200,200),(200,100)))
-    scene.add(Circle((200,200),30,'red'))
-    scene.add(Circle((200,300),30, 'blue'))
-    scene.add(Circle((300,200),30))
-    scene.add(Circle((100,200),30, 'black'))
-    scene.add(Circle((200,100),30, 'green'))
-    scene.add(Text((50,50),"Testing SVG"))
-    scene.write_svg()
-    scene.display()
-    return
-
-if __name__ == "__main__": test()
