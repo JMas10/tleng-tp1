@@ -1,9 +1,10 @@
-En esta sección vamos a explicar el analizador sintáctico o parser implementado . El análisis sintáctico convertirá el texto de entrada
+En esta sección vamos a explicar el analizador sintáctico o parser implementado . El análisis sintáctico convertirá al texto de entrada
 en el árbol de derivación pertinente. A partir de ello hacemos el análisis de las sentencias, utilizando estructuras auxiliares para
 cumplir posteriormente con el requerimiento de la generación del texto de salida (en formato svg).
+
 La idea general fue definir una función que represente cada una de las producciones de nuestra gramática, y dentro de cada una ir manipulando la
 información para luego generar el output requerido.
-Como atributos utilizamos lineno y lexpos para detallar el número de línea y posición respectivamente, mientras que el atributo value nos devuelve el valor.
+Como atributos utilizamos \texttt{lineno} y \texttt{lexpos} para detallar el número de línea y posición respectivamente, mientras que el atributo \texttt{value} nos devuelve el valor.
 Como estructuras auxiliares utilizamos un diccionario y una lista. El primero representa los parámetros obligatorios de cada una de las
 figuras, lo utilizamos dentro de la produccion STATE para chequear que todos los parámetros obligatorios están dentro de la cadena de entrada
 para cada figura en particular. El segundo es simplemente una lista donde iremos acumulando las distintas figuras que se fueron generando, teniendo
@@ -13,37 +14,37 @@ Agregamos una función que hiciera las veces de producción inicial solo a fines
 agregando las figuras que posteriormente dibujaremos.
 A continuación haremos un análisis de cada una de esas funciones para explicar cuál es su rol.\\
 
-P_START: genera el lienzo llamando a la función Scene (definida en la clase helper.py) y luego le agrega las figuras de la lista al mismo.
+\textbf{P_START}: genera el lienzo llamando a la función Scene (definida en la clase figuras.py) y luego le agrega las figuras de la lista al mismo.
 También chequea que no se haya llamado a la función size mas de una vez.\\
 
-P_PROGRAM_EMPTY: representa al programa que se genera a partir de la producción P $\mid$ $\lambda$\\
+\textbf{P_PROGRAM_EMPTY}: representa al programa que se genera a partir de la producción P $\mid$ $\lambda$\\
 
-P_PROGRAM_NONEMPTY: representa al programa que se genera a partir de la producción P $\rightarrow$ S newline P\\
+\textbf{P_PROGRAM_NONEMPTY}: representa al programa que se genera a partir de la producción P $\rightarrow$ S newline P\\
 
-P_STATE: Es la función más compleja del parser. Primero chequea que el token sea size, si lo es, se revisa que tenga el height y width que son los parámetros requeridos.
+\textbf{P_STATE}: Es la función más compleja del parser. Primero chequea que el token sea size, si lo es, se revisa que tenga el height y width que son los parámetros requeridos.
 Si el token no es size estamos ante la producción para generar una figura, por ello, se guarda los parámetros recolectados por los nodos hijos en una variable,
  e inicializa la figura como objeto (correspondiente al nombre de la misma, dentro de una función auxiliar).
 Si la generación no lanza una excepción, va completando los atributos requeridos por esa figura y la agrega a la lista de resultados. Si no se genera bien la figura o si
 los parámetros son incorrectos se lanza la excepción correspondiente.\\
 
-P_PARAMS_NONRECURSIVE: Representa la asignación de un valor a un parámetro sin recursión, es decir es el último de la lista o es único. Dentro de esta función se agrega
+\textbf{P_PARAMS_NONRECURSIVE}: Representa la asignación de un valor a un parámetro sin recursión, es decir es el último de la lista o es único. Dentro de esta función se agrega
 el número de linea, posición y valor del parámetro al diccionario de parámetros.\\
 
-P_PARAMS_RECURSIVE: Representa la seguidilla de parámetros separados por coma. Chequea que no haya repetidos y los va agregando a la lista de parámetros.\\
+\textbf{P_PARAMS_RECURSIVE}: Representa la seguidilla de parámetros separados por coma. Chequea que no haya repetidos y los va agregando a la lista de parámetros.\\
 
-P_VALOR_NUMBER: Realiza la asignación de un valor a un parámetro de tipo numérico.\\
+\textbf{P_VALOR_NUMBER}: Realiza la asignación de un valor a un parámetro de tipo numérico.\\
 
-P_VALOR_STRING: Realiza la asignación de un valor a un parámetro de tipo string.\\
+\textbf{P_VALOR_STRING}: Realiza la asignación de un valor a un parámetro de tipo string.\\
 
-P_VALOR_POINT: Realiza la asignación de un valor a un parámetro de tipo punto, es decir dos números separados por coma.\\
+\textbf{P_VALOR_POINT}: Realiza la asignación de un valor a un parámetro de tipo punto, es decir dos números separados por coma.\\
 
-P_VALOR_ARRAY: Realiza la asignación de un valor a un parámetro de tipo arreglo.\\
+\textbf{P_VALOR_ARRAY}: Realiza la asignación de un valor a un parámetro de tipo arreglo.\\
 
-P_ARRAY_ELEMENT: Representa el array con un único elemento, o el elemento final de un arreglo.\\
+\textbf{P_ARRAY_ELEMENT}: Representa el array con un único elemento, o el elemento final de un arreglo.\\
 
-P_ARRAY_RECURSIVE: Genera un nuevo elemento en un array y lo appendea a los elementos que siguen en la producción.\\
+\textbf{P_ARRAY_RECURSIVE}: Genera un nuevo elemento en un array y lo appendea a los elementos que siguen en la producción.\\
 
-P_ERROR: Define los errores sintácticos que ocurrieron. A partir del token genera el mensaje correspondiente.\\
+\textbf{P_ERROR}: Define los errores sintácticos que ocurrieron. A partir del token genera el mensaje correspondiente.\\
 
 Nuestra implementación utiliza Scene, una clase pensada para construir una cadena de SVG a partir de los datos de los
 parámetros que tomamos de la cadena de \textit{Dibu}. Después de declarar nuestra Scene se puede agregar lineas de

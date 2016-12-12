@@ -1,11 +1,13 @@
-En la siguiente sección vamos a mostrar y describir la gramática construida para el lenguaje \textit{Dibu}, llamo a esta
+En la siguiente sección vamos a mostrar y describir la gramática construida para el lenguaje \textit{Dibu}, llamaremos a esta
 gramática G:\\
 \\
+\textbf{Producciones}:
+\newline
 P $\rightarrow$ S newline P $\mid$ $\lambda$\\
 S $\rightarrow$ id PARAMS\\
 PARAMS $\rightarrow$  id = V, PARAMS $\mid$ id = V\\
 V $\rightarrow$ num $\mid$ string $\mid$ (num, num) $\mid$ [ARRAY]\\
-ARRAY $\rightarrow$ [num, num], ARRAY $\mid$ [num, num]\\
+ARRAY $\rightarrow$ (num, num), ARRAY $\mid$ (num, num)\\
 \\
 \textit{G} = \{\{P, S, PARAMS, V, ARRAY\}, \{num, string, (, , , ), [, ], =, id, newline\}, Descripto por la gramática, P\}\\
 
@@ -13,21 +15,25 @@ Como se describe en el enunciado, el lenguaje \textit{Dibu} es una serie de inst
 \\
 IDENTIFICADOR PARAM1=V1, PARAM2=V2, ..., PARAMN=VN\\
 
-Nuestra gramática consiste en cinco producciones. Comenzando con ARRAY la cual describe la secuencia de valores numericos
-separados por una coma, la cual se utilizara en V para describir arreglos. La producción V que contiene las combinaciones
-de terminales que se pueden esperar como valores de los parámetros (num, string, point, array).
-PARAMS posee la serie de compuesta por: parámetro = valor. S describe una instrucción, con su nombre y parámetros. Y
-finalmente P, describe la serie compuesta de las instrucciones descriptas en el no-terminal S. Con estas producciones se
-puede ver con estos que nuestra gramática describe precisamente la serie de instrucciones de \textit{Dibu}. Se debe
-aclarar que esta gramática no describe todas las restricciones de \textit{Dibu}, como por ejemplo que solo aparezca la
-instrucción size una vez. Estas cuestriones se tratarán en el lexer y el parser.\\
+Nuestra gramática consiste en cinco s\'imbolos no terminales, que generan 11 producciones:
+\begin{itemize}
+	\item Las producciones del no terminal ARRAY describen la secuencia de pares numericos que van dentro de un arreglo.
+	\item Las producciónes del no terminal V (valor) contiene las combinaciones de terminales que se pueden esperar como valores de los parámetros (num, string, point, array).
+	\item PARAMS posee la secuencia compuesta por: parámetro = valor.
+	\item S describe una figura, con su nombre y parámetros.
+	\item P describe la serie compuesta de las instrucciones descriptas en el no terminal S.
+\end{itemize}
 
-Por otro lado tenemos el tipo de la gramática, para exponer esta información no realizaremos una demostración rigurosa
-aunque si analizaremos la misma descartando en primera instancia que la gramática sea ambigua. Posteriormente reafirmaremos
-en que tipos de gramáticas no se cuenta y el por qué.\\
+Con estas producciones se puede ver que nuestra gramática describe precisamente la serie de instrucciones de \textit{Dibu}. Se debe
+aclarar que esta gramática no respeta todas las restricciones de \textit{Dibu}, como por ejemplo que solo aparezca la
+instrucción size una vez. Estas cuestiones se tratarán en el lexer y el parser.\\
 
-Esta gramática no es LL(1) porque las producciones de PARAMS no cumplen con el
-requerimiento de estas gramáticas(SD(PARAMS $\rightarrow$ id = V PARAMS P) $\cup$ SD(PARAMS $\rightarrow$ id = V)).\\
+Por otro lado tenemos que definir que tipo de gramática es \textit{G}. Para lograr este objetivo no realizaremos una demostración rigurosa
+aunque si analizaremos la misma descartando, en primera instancia, que la gramática sea ambigua. Posteriormente veremos a que tipos de gramáticas no pertenece \textit{G}.\\
+
+Esta gramática no es LL(1) porque en las producciones de PARAMS, por ejemplo, sucede que la intersecci\'o de s\'imbolos distinguidos no es vac\'ia: 
+
+SD(PARAMS $\rightarrow$ id = V, PARAMS) $\cap$ SD(PARAMS $\rightarrow$ id = V) = {id}.\\
 
 La gramática tampoco es LR(0). A continuación se mostrara el autómata correspondiente a la gramática, marcando los conflictos.
 Solamente se consideraron los estados del autómata que fueran interesantes por sus conflictos.\\
