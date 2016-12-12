@@ -30,7 +30,7 @@ def t_NUM(token):
     return token
 
 def t_STRING(token):
-    r"\"([a-zA-Z_+*-][a-zA-Z0-9_+*-]*)\""
+    r"\"([a-zA-Z_+*-](\s)?([a-zA-Z0-9_+*-](\s)?)*)\""
     string_value = token.value[1:-1]
     string_line = token.lineno
     string_pos = token.lexpos
