@@ -5,4 +5,11 @@
 \contentsline {section}{\numberline {4}Parser}{7}{section.4}
 \contentsline {section}{\numberline {5}Requerimientos de Software}{9}{section.5}
 \contentsline {section}{\numberline {6}Test}{10}{section.6}
-\contentsline {section}{\numberline {7}Conclusiones}{11}{section.7}
+\contentsline {subsection}{\numberline {6.1}\textbf {Figura:} Rectangle}{10}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}\textbf {Figura:} Line}{10}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}\textbf {Figura:} Circle}{11}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}\textbf {Figura:} Ellipse}{12}{subsection.6.4}
+\contentsline {subsection}{\numberline {6.5}\textbf {Figura:} Polyline}{13}{subsection.6.5}
+\contentsline {subsection}{\numberline {6.6}\textbf {Figura:} Polygon}{13}{subsection.6.6}
+\contentsline {subsection}{\numberline {6.7}Errores Sem\IeC {\'a}nticos}{15}{subsection.6.7}
+\contentsline {section}{\numberline {7}Conclusiones}{17}{section.7}

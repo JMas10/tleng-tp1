@@ -34,7 +34,7 @@ def p_start(p):
     p[0] = scene
 
 def p_program_nonempty(p):
-    'program : state NEWLINE program'
+    'program : state program'
     pass
 
 def p_program_empty(p):
