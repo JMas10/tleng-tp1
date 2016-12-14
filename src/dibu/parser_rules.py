@@ -86,7 +86,7 @@ def p_params_recursive(p):
     'params : ID EQUALS valor COMMA params'
     if p[1]["value"] in p[5]['parametros']:
         #Error Parametros repetidos
-        raise SemanticException('El parametros ' + p[1]["value"] + "esta repetido" + "\nline: " + str(p[1]["lineno"])+ "\nposition: " + str(p[1]["lexpos"]))
+        raise SemanticException('El parametro ' + p[1]["value"] + " esta repetido" + "\nline: " + str(p[1]["lineno"])+ "\nposition: " + str(p[1]["lexpos"]))
     paramDicc = p[5]['parametros']
     paramDicc.update({p[1]["value"]: p[3]["value"]})
     p[0] = {'parametros': paramDicc, "lineno": p[1]["lineno"], "lexpos": p[1]["lexpos"]}
