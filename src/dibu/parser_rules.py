@@ -60,7 +60,7 @@ def p_state(p):
             figura = inicializarFigura(p[1]["value"])
         except KeyError:
             # Error figura invalida
-            raise SemanticException("Figura Invalida " + "\nline: " + str(p[2]["lineno"])+ "\nposition: " + str(p[2]["lexpos"]))
+            raise SemanticException("La figura " + "'" + p[1]["value"] + "'" + "es invalida " + "\nline: " + str(p[2]["lineno"])+ "\nposition: " + str(p[2]["lexpos"]))
         if incluido(paramsOblig, (params.keys())):
             for key,value in params.iteritems():
                 try:
@@ -69,12 +69,12 @@ def p_state(p):
                     metodo(value)
                 except AttributeError:
                     # Error parametro invalido
-                    raise SemanticException("Parametro Invalido " + "\nline: " + str(p[2]["lineno"])+ "\nposition: " + str(p[2]["lexpos"]))
+                    raise SemanticException("'" + key + "'" +  " es un Parametro Invalido " + "\nline: " + str(p[2]["lineno"])+ "\nposition: " + str(p[2]["lexpos"]))
 
             listaFiguras.append(figura)
         else:
             # Error faltan parametros obligatorios
-            raise SemanticException("Faltan Parametros obligatorios " + "\nline: " + str(p[2]["lineno"])+ "\nposition: " + str(p[2]["lexpos"]))
+            raise SemanticException("Faltan los parametros obligatorios: " + losQueFaltan(paramsOblig, (params.keys())) + "\nline: " + str(p[2]["lineno"])+ "\nposition: " + str(p[2]["lexpos"]))
 
 def p_params_nonrecursive(p):
     'params : ID EQUALS valor'
@@ -86,7 +86,7 @@ def p_params_recursive(p):
     'params : ID EQUALS valor COMMA params'
     if p[1]["value"] in p[5]['parametros']:
         #Error Parametros repetidos
-        raise SemanticException('Parametros repetidos ' + "\nline: " + str(p[1]["lineno"])+ "\nposition: " + str(p[1]["lexpos"]))
+        raise SemanticException('El parametros ' + p[1]["value"] + "esta repetido" + "\nline: " + str(p[1]["lineno"])+ "\nposition: " + str(p[1]["lexpos"]))
     paramDicc = p[5]['parametros']
     paramDicc.update({p[1]["value"]: p[3]["value"]})
     p[0] = {'parametros': paramDicc, "lineno": p[1]["lineno"], "lexpos": p[1]["lexpos"]}
@@ -130,6 +130,13 @@ def incluido(l1, l2):
         if each not in l2:
             return False
     return True
+
+def losQueFaltan(l1, l2):
+    faltantes = ""
+    for each in l1:
+        if each not in l2:
+            faltantes = faltantes + "'" + each + "' "
+    return faltantes
 
 def inicializarFigura(nombre):
     if nombre == 'rectangle':
