@@ -3,13 +3,13 @@ gramática G:\\
 \\
 \textbf{Producciones}:
 \newline
-P $\rightarrow$ S newline P $\mid$ $\lambda$\\
+P $\rightarrow$ S P $\mid$ $\lambda$\\
 S $\rightarrow$ id PARAMS\\
 PARAMS $\rightarrow$  id = V, PARAMS $\mid$ id = V\\
 V $\rightarrow$ num $\mid$ string $\mid$ (num, num) $\mid$ [ARRAY]\\
 ARRAY $\rightarrow$ (num, num), ARRAY $\mid$ (num, num)\\
 \\
-\textit{G} = \{\{P, S, PARAMS, V, ARRAY\}, \{num, string, (, , , ), [, ], =, id, newline\}, Descripto por la gramática, P\}\\
+\textit{G} = \{\{P, S, PARAMS, V, ARRAY\}, \{num, string, (, , , ), [, ], =, id\}, Descripto por la gramática, P\}\\
 
 Como se describe en el enunciado, el lenguaje \textit{Dibu} es una serie de instrucciones de la forma:\\
 \\
@@ -31,7 +31,7 @@ instrucción size una vez. Estas cuestiones se tratarán en el lexer y el parser
 Por otro lado tenemos que definir que tipo de gramática es \textit{G}. Para lograr este objetivo no realizaremos una demostración rigurosa
 aunque si analizaremos la misma descartando, en primera instancia, que la gramática sea ambigua. Posteriormente veremos a que tipos de gramáticas no pertenece \textit{G}.\\
 
-Esta gramática no es LL(1) porque en las producciones de PARAMS, por ejemplo, sucede que la intersecci\'o de s\'imbolos distinguidos no es vac\'ia: 
+Esta gramática no es LL(1) porque en las producciones de PARAMS, por ejemplo, sucede que la intersecci\'o de s\'imbolos distinguidos no es vac\'ia:
 
 SD(PARAMS $\rightarrow$ id = V, PARAMS) $\cap$ SD(PARAMS $\rightarrow$ id = V) = {id}.\\
 
@@ -44,7 +44,7 @@ Solamente se consideraron los estados del autómata que fueran interesantes por 
 La gramática es SLR ya que conservando el mismo autómata vemos que los siguientes de P y ARRAY que son los implicados en
 las nodos que generan los conflictos son:\\
 
-Siguientes(P) = \{\$\}\\
+Siguientes(P) = \{\$\}
 Siguientes(ARRAY) = \{ ] \}\\
 
 Con lo cual los nodos 1 y 2 que presentaban conflictos por el lambda quedan resueltos debido a que solamente se reducirá por

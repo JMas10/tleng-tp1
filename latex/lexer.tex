@@ -11,8 +11,8 @@ para el posterior control de errores.\\
 \newline
 \newline
 \textbf{STRING}: Cadenas de caracteres entre comillas compuestas por las letras de la a a la z, incluidas mayúsculas, los números del
-0 al 9 y los símbolos +,- y *.\\
-\textbf{Expresi\'on Regular}: $"(a|..|z|A|..|Z|+|*|-)^{*}(a|..|z|A|..|Z|+|*|-|0|..|9)^{*}"$
+0 al 9 y los símbolos +,- y *, la coma y el espacio(este último lo representamos con la palabra espacio).\\
+\textbf{Expresi\'on Regular}: $"(a|..|z|A|..|Z|+|*|-|,|(espacio)?)(a|..|z|A|..|Z|+|*|-|,|0|..|9|(espacio)?)^{*}"$
 \newline
 \newline
 \textbf{ID}: Igual que STRING pero sin las comillas.\\
@@ -30,9 +30,6 @@ para el posterior control de errores.\\
 \textbf{COMMA}: El carácter $,$.\\
 \newline
 \textbf{EQUALS}: El carácter $=$.\\
-\newline
-\textbf{NEWLINE}: El salto de linea. Este tiene la particularidad de que aumenta en una linea el largo del texto, esto se
-utiliza para detectar la posición de los errores.\\
 \newline
 \textbf{IGNORE}: El carácter vacío.\\
 \newline

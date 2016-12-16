@@ -19,7 +19,7 @@ También chequea que no se haya llamado a la función size mas de una vez.\\
 
 \textbf{P_PROGRAM_EMPTY}: representa al programa que se genera a partir de la producción P $\mid$ $\lambda$\\
 
-\textbf{P_PROGRAM_NONEMPTY}: representa al programa que se genera a partir de la producción P $\rightarrow$ S newline P\\
+\textbf{P_PROGRAM_NONEMPTY}: representa al programa que se genera a partir de la producción P $\rightarrow$ S P\\
 
 \textbf{P_STATE}: Es la función más compleja del parser. Primero chequea que el token sea size, si lo es, se revisa que tenga el height y width que son los parámetros requeridos.
 Si el token no es size estamos ante la producción para generar una figura, por ello, se guarda los parámetros recolectados por los nodos hijos en una variable,
