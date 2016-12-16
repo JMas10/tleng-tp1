@@ -12,7 +12,7 @@ para el posterior control de errores.\\
 \newline
 \textbf{STRING}: Cadenas de caracteres entre comillas compuestas por las letras de la a a la z, incluidas mayúsculas, los números del
 0 al 9 y los símbolos +,- y *, la coma y el espacio(este último lo representamos con la palabra espacio).\\
-\textbf{Expresi\'on Regular}: $"(a|..|z|A|..|Z|+|*|-|,|(espacio)?)(a|..|z|A|..|Z|+|*|-|,|0|..|9|(espacio)?)^{*}"$
+\textbf{Expresi\'on Regular}: $"(a|..|z|A|..|Z|+|*|-|,|?|!|(espacio)?)(a|..|z|A|..|Z|+|*|-|,|0|..|9||?|!|(espacio)?)^{*}"$
 \newline
 \newline
 \textbf{ID}: Igual que STRING pero sin las comillas, tampoco tiene la coma ni los espacios.\\
@@ -32,9 +32,6 @@ para el posterior control de errores.\\
 \textbf{EQUALS}: El carácter $=$.\\
 \newline
 \textbf{IGNORE}: El carácter vacío.\\
-\newline
-\textbf{ERROR}: Este aparece cuando se encuentra un token desconocido. En consecuencia se guarda la linea, valor, posición y
-tipo de valor para el error. Con este último cumplimos que si la cadena es inválida se detectara el error y se informará de él.\\
 \newline
 Como se puede ver con esta serie de tokens y sus respectivas implementaciones podemos describir todos los posibles no terminales y terminales
 necesarios para nuestra gramática. Quedan todavía restricciones como por ejemplo que ID solamente puede tener como valores a los

@@ -201,6 +201,44 @@ Código \textit{SVG} de salida:
 \caption{Imagen generada - Figura Poligono}
 \end{figure}
 
+\subsection{\textbf{Figura:} Text}
+
+Código \textit{Dibu} de entrada:
+
+\begin{lstlisting}
+  size height=200, width=400
+  text t="Esto es una prueba", at=(0,10), font-family="Verdana", font-size="small", fill="blue"
+  text t="Esto tambien es una prueba, pero con comas", at=(0,30), font-family="Verdana", font-size="medium", stroke-width=1, stroke="red"
+  text t="Adivienen que es esto?", at=(0,50), font-family="Verdana", font-size="large", stroke-width=2, stroke="green"
+\end{lstlisting}
+
+Código \textit{SVG} de salida:
+
+\begin{lstlisting}
+  <?xml version="1.0"?>
+  <svg height="200" width="400" >
+   <g style="fill-opacity:1.0; stroke:black;
+    stroke-width:1;">
+    <text x="0" y="10" font-family="Verdana" font-size="small" fill="blue" stroke="none" stroke-width="1" >
+     Esto es una prueba
+    </text>
+    <text x="0" y="30" font-family="Verdana" font-size="medium" fill="black" stroke="red" stroke-width="1" >
+     Esto tambien es una prueba, pero con comas
+    </text>
+    <text x="0" y="50" font-family="Verdana" font-size="large" fill="black" stroke="green" stroke-width="2" >
+     Adivienen que es esto?
+    </text>
+   </g>
+  </svg>\end{lstlisting}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=150mm]{imagenes/text.jpg}
+\caption{Imagen generada - Ejemplo de Texto}
+\end{figure}
+
+
 \newpage
 
 \subsection{Errores Semánticos}

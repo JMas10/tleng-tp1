@@ -25,7 +25,6 @@ if __name__ == "__main__":
         scene = parser.parse(text, lexer)
         scene.nombre(argv[2])
         scene.write_svg()
-        scene.display()
     except parser_rules.SemanticException as exception:
         print "Semantic error: " + str(exception)
     except parser_rules.SintacticException as exception:
