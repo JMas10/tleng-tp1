@@ -1,3 +1,0 @@
-size width=1200, height=400
-rectangle size=(398, 1198), upper_left=(1,1), fill="none", stroke="blue", stroke-width=2
-circle center=(600, 200), fill="red", stroke="blue", stroke-width=10, radius=100
